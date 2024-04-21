@@ -1,0 +1,399 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&display=swap");
+
+:root {
+  --yellow: #2d2d2d;
+}
+
+.button {
+  width: 100px;
+  height: 30px;
+  font-size: 15px !important;
+}
+
+.body {
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.heading {
+  text-align: center;
+  margin: 0 6rem;
+  font-size: 4rem;
+  padding: 1rem;
+  border-bottom: 0.1rem solid #fff4;
+  color: #fff;
+  padding-top: 5%;
+}
+
+.heading span {
+  color: var(--yellow);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100%;
+  width: 35rem;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  text-align: center;
+}
+
+header .user img {
+  height: 17rem;
+  width: 17rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 0.7rem solid var(--yellow);
+}
+
+header .user .name {
+  font-size: 3.5rem;
+  color: rgb(0, 0, 0);
+}
+
+header .user .post {
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+}
+
+header .navbar {
+  width: 100%;
+}
+
+header .navbar ul {
+  list-style: none;
+  padding: 1rem 3rem;
+}
+
+header .navbar ul li a {
+  display: block;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background: #333;
+  color: rgb(0, 0, 0);
+  font-size: 2rem;
+  border-radius: 5rem;
+}
+
+header .navbar ul li a:hover {
+  background: var(--yellow);
+}
+
+#menu {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: #333;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: 2.5rem;
+  padding: 1rem 1.5rem;
+  z-index: 1000;
+  display: none;
+}
+
+.homeee {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  padding: 1%;
+}
+
+.homeee h3 {
+  font-size: 2.5rem;
+  color: rgb(0, 0, 0);
+}
+
+.homeee h1 {
+  font-size: 5rem;
+  color: rgb(0, 0, 0);
+}
+
+.homeee h1 span {
+  color: var(--yellow);
+}
+
+.homeee p {
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  padding: 1rem 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+}
+
+.info {
+  align-items: center;
+  margin: 0 5vmax;
+
+  padding: 1rem 2rem;
+}
+
+.info h3 {
+  font-size: 2rem;
+  color: var(--yellow);
+  padding: 1rem 0;
+  font-weight: normal;
+}
+
+.info h3 span {
+  color: rgb(0, 0, 0);
+  padding: 0 0.5rem;
+}
+
+.counter {
+  flex: 1 1 48rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 20rem;
+  background: #9fbfe3;
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem;
+}
+
+.box span {
+  font-size: 4rem;
+  color: var(--yellow);
+}
+
+.box h3 {
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+
+.contact .row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact .row .content {
+  flex: 1 1 30rem;
+  padding: 4rem;
+  padding-bottom: 0;
+}
+
+.contact .row form {
+  flex: 1 1 45rem;
+  padding: 2rem;
+  margin: 2rem;
+  margin-bottom: 4rem;
+}
+
+.contact .row form .box {
+  padding: 1.5rem;
+  margin: 1rem 0;
+  background: #3333;
+  color: rgb(0, 0, 0);
+  text-transform: none;
+  font-size: 1.7rem;
+  width: 100%;
+}
+
+.contact .row form .box::placeholder {
+  text-transform: capitalize;
+}
+
+.contact .row form .message {
+  height: 15rem;
+  resize: none;
+}
+
+.contact .row .content .title {
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+  font-size: 3rem;
+  padding-bottom: 2rem;
+}
+
+.contact .row .content .info h3 {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  padding: 1rem 0;
+  font-weight: normal;
+}
+
+.contact .row .content .info h3 i {
+  padding-right: 1rem;
+  color: var(--yellow);
+}
+
+.top {
+  position: fixed;
+  bottom: 7.5rem;
+  right: 2rem;
+  z-index: 100;
+  display: none;
+}
+.img {
+  width: 200px;
+  height: 250px;
+  border: 1px solid transparent;
+  border-radius: 5rem;
+}
+.imagess {
+  padding-right: 14%;
+}
+
+.second {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.nmcm {
+  text-align: left !important;
+}
+.cmmt {
+  text-align: left !important;
+}
+.crded {
+  display: flex !important;
+  justify-content: right !important;
+  margin-right: 1%;
+}
+
+
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 55%;
+  }
+
+  .home {
+    padding: 1rem 4rem;
+  }
+}
+
+@media (max-width: 991px) {
+  header {
+    left: -120%;
+  }
+
+  #menu {
+    display: block;
+  }
+
+  header.toggle {
+    left: 0%;
+  }
+
+  body {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  header {
+    width: 100vw;
+  }
+
+  .heading {
+    margin: 0 3rem;
+  }
+
+  .about .row .counter .box {
+    width: 100%;
+  }
+
+
+
+  .contact .row form {
+    margin: 3rem 0;
+  }
+}
+.avatar {
+  align-self: left;
+}
+.txtcl {
+  color: rgb(0, 0, 0) !important;
+}
+.tbody {
+  color: rgb(0, 0, 0) !important;
+}
+
+.table thead th{
+  background-color: rgb(142, 142, 143);
+}
+.about{
+  padding-top: 10% !important;
+}
+.ad-bar img {
+  margin-right: 10px; 
+  max-width: 100%; 
+  max-height: 50px !important;/* Ensure the ad image doesn't exceed the width of its container */
+}
+.ad-bar {
+ margin-top: 3%;
+  background: Orgb(0, 101, 219);
+  background: linear-gradient(
+    45deg,
+    rgba(206, 202, 202, 0.9) 50%,
+    rgb(48, 151, 230) 50%
+  );/* Background color of the ad bar */
+  padding: 10px; /* Adjust padding as needed */
+  text-align: center; /* Center the content horizontally */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Center items horizontally */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+}
+
+.detailing{
+  margin-bottom: -40%;
+}
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-frame {
+  border: 2px solid #000; /* Border style */
+  padding: 5px; /* Padding around the image */
+  margin: 5px; /* Margin between images */
+}
+
+.image-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}

@@ -1,0 +1,133 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 550px;
+  /* background: linear-gradient(45deg, rgba(167, 168, 168, 0.9) 50%, rgb(112, 30, 30) 50%); */
+}
+
+.wishlist1 {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+
+}
+
+.cart-heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  margin-top: 5% !important;
+  position: relative; /* Set position to relative to make the ::before pseudo-element relative to it */
+}
+
+.cart-heading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffd700, #ff8c00, #ffd700); /* Use gradient for glowing effect */
+  z-index: -1;
+  animation: glow 1.5s ease infinite; /* Apply animation for glowing effect */
+}
+
+@keyframes glow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+
+.empty-cart {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #777;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Soften the border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  padding: 20px;
+  background-color: #fff;
+  transition: transform 0.3s; /* Add a transition for a smoother hover effect */
+}
+
+.cart-item:hover {
+  transform: translateY(-2px); /* Move the cart item up slightly on hover */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2), 0 0 30px rgba(255, 215, 0, 0.1); /* Add a gold glowing effect */
+}
+
+
+
+.item-details {
+  flex: 1;
+}
+
+.item-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.item-price,
+.item-quantity {
+  color: #666;
+}
+
+.item-actions {
+  margin-left: 20px;
+}
+
+.remove-button {
+  padding: 8px 20px;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #ff3333;
+}
+
+.cart-total {
+  margin-top: 30px;
+}
+
+.checkout-button {
+  padding: 12px 24px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #43a047;
+}
+
+.item-carousel {
+  width: 150px;
+  height: auto;
+}
+
+.item-carousel .carousel-inner {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+

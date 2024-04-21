@@ -1,0 +1,10 @@
+#home {
+    background: Orgb(0, 101, 219);
+    background: linear-gradient(
+      90deg,
+      rgb(22, 169, 169) 50%,
+      rgb(53, 183, 209) 100%
+    );
+    min-height: 500px;
+   
+  }

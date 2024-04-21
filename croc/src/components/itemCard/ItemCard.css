@@ -1,0 +1,38 @@
+.item-card {
+    position: relative;
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Add opacity transition */
+  }
+  
+  .item-card:hover .button-container {
+    opacity: 1;
+  }
+  
+  .button-container a {
+    text-decoration: none;
+    color: #000; /* Set the color of the buttons */
+    padding: 8px; /* Add padding to the buttons */
+    background-color: #ffffff; /* Set background color of the buttons */
+    border-radius: 3px; /* Add border radius for rounded corners */
+  }
+  
+  .button-container a:hover {
+    background-color: #d8d5d5; /* Change background color on hover */
+  }
+  .contact-btn{
+    display: flex;
+    justify-content: space-between;
+  }
+  .info-btn{
+    display: flex;
+    justify-content: space-between;
+  }
+  

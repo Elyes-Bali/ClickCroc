@@ -1,0 +1,11 @@
+.infodiv{
+    background: Orgb(0, 101, 219);
+    background: linear-gradient(
+      90deg,
+      rgb(234, 251, 251) 50%,
+      rgb(53, 183, 209) 100%
+    );
+    min-height: 500px;
+    margin-top: -3%;
+    
+}

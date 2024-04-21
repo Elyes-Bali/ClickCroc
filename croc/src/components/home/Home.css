@@ -1,0 +1,56 @@
+.div1{
+    width: 100.8% !important;
+  
+}
+.txte{
+  margin-top: 25%;
+}
+.div2{
+    width: 50% !important;
+    height: 600px;
+    background: #ffffff;
+    background: Orgb(0, 101, 219);
+  background: linear-gradient(
+    45deg,
+    rgb(150, 251, 251) 45%,
+    rgb(255, 251, 251) 60%
+  );
+
+text-align: center;
+font-style: italic;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;  
+}
+.div3{
+    background: url("../../../public/images/croc.png");
+    width: 50% !important;
+    height: 600px !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    object-fit: cover !important;
+    /* background-color: aqua; */
+    margin-top: -5% !important;
+    
+}
+.title{
+ margin-top: -30px;
+}
+.wlc{
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    font-style: italic;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.leadder{
+  margin-top: 22% !important;
+}
+.about{
+  margin-top: -30% !important;
+}
+.contact{
+  margin-top: -15% !important;
+}
+.homeft{
+  margin-top: -10% !important;
+}

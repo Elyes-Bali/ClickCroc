@@ -1,0 +1,206 @@
+.back {
+  background-color: rgba(255, 255, 255, 0.609);
+}
+
+/* #Create {
+  background: linear-gradient(
+    180deg,
+    rgb(202, 201, 201) 0%,
+    rgba(104, 226, 251, 1) 50%,
+    rgba(0, 101, 219, 1) 100%
+  );
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-attachment: fixed;
+} */
+/* .homer {
+  background: Orgb(0, 101, 219);
+  background: linear-gradient(
+    90deg,
+    rgb(0, 101, 219) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  min-height: 500px;
+} */
+
+
+.myim::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  font: 400 1vmax cursive;
+  transition: all 0.5s;
+  padding: 0 0vmax;
+  color: white;
+  background-color: rgb(4, 128, 252);
+  margin-bottom: 1%;
+}
+
+.sidebare {
+  display: flex;
+  width: 17%;
+  min-width: 200px; /* Set a minimum width to ensure content is not squished */
+  max-width: 250px; /* Set a maximum width to limit the sidebar's expansion */
+  height: 100vh;
+  background: Orgb(0, 101, 219);
+  background: linear-gradient(
+    0deg,
+    rgb(99,143,204,255) 55%,
+    rgba(130,157,201,255) 50%
+  );
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 1;
+  padding-top: 30px;
+  transition: width 0.3s ease; /* Add a transition effect for width changes */
+}
+  .sidebare-top,
+  .sidebare-center,
+  .sidebare-bottom {
+ 
+    /* align-items: center; */
+    /* float: left; */
+    padding-top: 10% !important;
+    width: 100%;
+    /* border-bottom: 1px solid #d22222; */
+    padding: 20px 0;
+    margin-bottom: 10px;
+    /* background-color: rebeccapurple; */
+  }
+  .sidebare-top{
+    text-align: center;
+    /* background-color: red; */
+    padding-left: 0px;
+  }
+  .sidebare-top h4{
+    text-align: center!important;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #d22222;
+    margin: 0 auto;
+  
+  
+  }
+  
+  .sidebare-center {
+    padding: 0;
+    
+  }
+  
+  .sidebare-bottom {
+    justify-content: center;
+    border: none;
+  }
+  
+ 
+  
+  .brand {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .list-item {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    /* float: left; */
+    /* width: 100%; */
+  }
+  
+  .list-item-icon {
+    width: 30px;
+    font-size: 20px;
+  }
+  
+  .active,
+  .list-item:hover {
+    background-color: #374151;
+    color: white;
+  }
+  .list-item:active {
+    background-color: #374151;
+    color: white;
+  }
+  
+  .color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #9ca3af;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  
+  .dark {
+    background-color: #ffffff;
+  }
+  
+  .night {
+    background-color: #312e81;
+  }
+  
+  .light {
+    background-color: #f3f4f6;
+  }
+  
+  .sidebare.night {
+    background-color: #ffffff;
+    color: #b4bbc7;
+  }
+  
+  .list-item.night.active {
+    background-color: #ffffff;
+  }
+  
+  .sidebare.light {
+    background-color: #f3f4f6;
+    color: #ffffff;
+  }
+  
+  .list-item.light.active {
+    background-color: #d1d5db;
+    color: #ffffff;
+  }
+  .ava{
+
+    width: 150px !important;
+    height: 150px !important;
+   
+  }
+  
+  /* @media only screen and (max-width: 768px) {
+    .sidebar {
+      width: 50px;
+    }
+    .brand,
+    .list-item-text {
+      display: none;
+    }
+  } */
+ 
+  /* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .sidebare {
+    width: 60px; /* Reduce the width for smaller screens */
+  }
+  
+  /* Hide the sidebar text and keep only icons */
+  .list-item-text {
+    display: none;
+  }
+}

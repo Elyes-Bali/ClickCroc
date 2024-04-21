@@ -1,0 +1,47 @@
+.foss {
+  background: url("../../../public/images/doc1.jpg");
+  background-size: cover;
+  object-fit: cover;
+  min-height: 500px;
+}
+.clr {
+  background: rgb(255, 255, 255);
+}
+
+.backk {
+  background: rgb(27, 110, 204);
+  background: linear-gradient(
+    90deg,
+    rgb(150, 251, 251) 45%,
+    rgb(255, 249, 249) 60%
+  );
+  height: 110vh;
+  margin-top: -4%;
+}
+.frr {
+  padding-top: 5% !important;
+}
+
+.blue {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.myimage::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  font: 400 1vmax cursive;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: white;
+  background-color: rgb(252, 107, 4);
+  object-fit: cover;
+}
+
+.ccc{
+    width: 10px !important;
+}

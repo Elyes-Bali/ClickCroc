@@ -1,0 +1,9 @@
+.sld{
+    width: 70% !important;
+}
+.txt{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    font-weight: bold;
+}

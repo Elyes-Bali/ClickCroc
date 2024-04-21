@@ -1,0 +1,114 @@
+.container{
+  margin: 0 auto;
+  padding: 5%;
+  width: 55%;
+  
+}
+
+#Profile {
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 0%,
+    rgb(149, 169, 236) 50%,
+    rgb(76, 140, 213) 100%
+  );
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-attachment: fixed; 
+}
+
+.imggg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2% 3%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.imgg{
+  width: 250px;
+  height: 250px;
+  border-radius: 40%;
+  border: 1px solid black;
+}
+
+
+
+.butt{
+    position: flex;
+    animation: alternate-reverse;
+    width: 25%;
+    margin: 0 auto !important;
+    margin-top: 25px;
+}
+
+.butt1{
+  position: flex;
+  animation: alternate-reverse;
+  width: 25%;
+  margin-left: 37% !important;
+  margin-top: 25px;
+}
+.imgsmap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2% 3%;
+  flex-direction: row;
+  flex-wrap: wrap;
+ 
+
+}
+.imgs{
+  margin: 1% !important;
+}
+.imgs img{
+  width: 250px;
+  height: 250px;
+  border-radius: 40%;
+  border: 1px solid black;
+}
+.area{
+  height: 700px;
+ 
+}
+.pill{
+  border:1px solid white;
+  border-radius: 8%;
+}
+.eml{
+cursor: not-allowed;
+outline: none;
+}
+/* input[type=file] {
+  color: transparent !important;
+}
+input[type=file]::before {
+content: "Choose a picture";
+color: black;
+margin-right: 10px; 
+} */
+.myimage::file-selector-button{
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  font: 400 1vmax cursive;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: white;
+  background-color: rgb(4, 128, 252);
+}
+.myimage{
+  margin-left: 110px !important;
+}
+.igmh{
+ margin-left:500px !important; 
+}
+
+.prt{
+  padding-top: 5%;
+}

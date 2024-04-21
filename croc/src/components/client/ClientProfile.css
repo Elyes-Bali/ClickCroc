@@ -1,0 +1,87 @@
+
+  .name{
+    display: flex;
+    justify-content: center;
+    font-size: 60px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 1%;
+  }
+  .avat{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 380%;
+    
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col-md-6 {
+    width: calc(2% - 15px); /* Adjust spacing as needed */
+    margin-bottom: 30px; /* Adjust spacing as needed */
+  }
+  
+  .row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /* ClientProfile.css */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure equal spacing between cards */
+}
+
+.card {
+  width: 48%; /* Set the width of each card to occupy approximately half of the container */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%; /* On smaller screens, make each card occupy the full width */
+  }
+}
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+ 
+  .buttom{
+    display: flex;
+    justify-content: space-between;
+  }
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
