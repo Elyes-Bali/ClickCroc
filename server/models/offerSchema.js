@@ -52,6 +52,10 @@ const offerSchema = new mongoose.Schema({
         type : String,
         
     },
+    adress : {
+        type : String,
+        
+    },
     date :{
         type : Date,
         default: Date.now()
@@ -64,6 +68,9 @@ const offerSchema = new mongoose.Schema({
         type : Boolean,
         default : false 
     },
+    rating:{
+        type: Array,
+      },
     images: [Object],
   
 },);

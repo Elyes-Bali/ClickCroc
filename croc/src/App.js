@@ -36,6 +36,9 @@ import AdminOffers from "./components/dashboard/adminoffers/AdminOffers";
 import ChartDb from "./components/charts/ChartDb";
 import Chartusers from "./components/charts/Chartusers";
 
+import Contact from "./components/contact/Contact";
+import SpecialCase from "./components/SpecialCase/SpecialCase";
+
 
 
 function App() {
@@ -44,7 +47,10 @@ function App() {
   const isAdmin = localStorage.getItem("isAdmin");
   return (
     <div>
+      
       <Navbar ping={ping}/>
+     
+      {/* <Header/> */}
     {token && isAdmin &&
       <SideBar />}
      
@@ -77,11 +83,12 @@ function App() {
         </Route>
         <Route path="/Create" element={<CreateOffers />} />
         <Route path="/market" element={<Market />} />
-        <Route path="/dev/:id" element={<OfferDetail />} />
+        <Route path="/dev/:id" element={<OfferDetail ping={ping} setPing={setPing}/>} />
         <Route path="/Profil" element={<Profile ping={ping} setPing={setPing}/>} />
 
         <Route path="/clt" element={<ClientProfile />} />
         <Route path="/wish" element={<Wishlist />} />
+        <Route path="/contact" element={<Contact />} />
    
 
         

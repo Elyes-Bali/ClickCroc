@@ -2,6 +2,27 @@
     font-family: sans-serif;
     text-align: center;
   }
+.free{
+  font-size: 1.8rem;
+}
+.ctr{
+  margin-top: -15% !important;
+}
+  
+.sakura {
+
+  background: url("../../../public/images/market2.jpg");
+  min-height: 850px;
+  background-repeat: no-repeat;
+  background-size: cover;
+ object-fit: contain;
+ margin-top: -3%;
+}
+.moon{
+  margin-top: 10%;
+  font-size: 100px;
+  color: rgb(17, 255, 0);
+}
   .container {
     margin: auto;
     margin-top: 3%;
@@ -42,10 +63,12 @@
     border: 8px solid transparent;
     border-radius: 10rem;
     background-image: linear-gradient(#fff, #fff),
-      radial-gradient(circle at bottom right, rgb(0, 66, 128), rgb(0, 174, 255));
+      radial-gradient(circle at bottom right, rgb(255, 255, 255), rgb(0, 0, 0));
     background-origin: border-box;
     background-clip: content-box, border-box;
     margin-right: 0%;
+    width: 190% !important;
+    margin-left: -35% !important;
   }
   .text {
     font-size: 1.2rem;
@@ -76,12 +99,11 @@
     display: grid !important;
     margin-top: -26px !important;
     position: absolute !important;
-    width: 38% !important;
+    width: 100% !important;
     border: 20px solid transparent;
     border-radius: 10rem;
-    margin-left: 6px;
+    margin-left: -75px;
     z-index: 1;
-    
   }
   
   .search-box {
@@ -129,7 +151,9 @@
     position: relative;
     overflow: hidden;
   }
-
+.buttons{
+  margin-top: 10% !important;
+}
 /* Add this CSS to your Market.css file or wherever you manage your CSS */
 
 /* Add this CSS to your Market.css file or wherever you manage your CSS */
@@ -158,7 +182,38 @@
 }
 
 
+.market {
+  position: relative;
+  padding-left: 55% !important
+  ; /* Adjust this value as needed */
+  padding-bottom: 2%;
+  margin-top: 25% !important;
+}
 
+.market h2 {
+  position: absolute;
+  font-size: 8em;
+  transform: translate(-50%, -50%);
+}
+
+.market h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #ffffff;
+}
+
+.market h2:nth-child(2) {
+  color: #000000;
+  animation: animatel 4s ease-in-out infinite;
+}
+
+@keyframes animatel {
+  0%, 100% {
+    clip-path: polygon(10% 65%, 32% 75%, 44% 75%, 69% 70%, 86% 62%, 97% 57%, 100% 54%, 100% 99%, 3% 100%, 1% 100%);
+  }
+  50% {
+    clip-path: polygon(10% 73%, 24% 74%, 40% 74%, 66% 59%, 87% 50%, 97% 45%, 100% 43%, 100% 99%, 3% 100%, 1% 100%);
+  }
+}
 
 /* Adjust padding, background color, and other styles as needed */
 

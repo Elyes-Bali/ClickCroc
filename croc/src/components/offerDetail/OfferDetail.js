@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./OfferDetail.css";
 import { useLocation } from "react-router-dom";
-import { AspectRatio, Badge, Box, Button } from "@chakra-ui/react";
 import { CurrentUser, GetAllUsers } from "../../apis/UserApi";
-import { GetAllOff, Getoff } from "../../apis/OfferApi";
-import Footer from "../footer/Footer";
+import { ApplyRate, GetAllOff, Getoff } from "../../apis/OfferApi";
+import Footer from "../screens/Footer/Footer";
+import { Carousel } from "react-bootstrap";
+import { GetAllCom } from "../../apis/Comments";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { Button } from "react-bootstrap";
+import Comments from "./Comments";
 
-const OfferDetail = () => {
+const OfferDetail = ({ ping, setPing }) => {
   const location = useLocation();
   const { dev } = location.state;
-  // console.log(location);
   const [offer, setOffer] = useState([]);
   const [useroffer, setUseroffer] = useState([]);
   const hasScrolledRef = useRef(false);
@@ -17,6 +21,18 @@ const OfferDetail = () => {
   const [Allusers, setAllUser] = useState({});
   const [test, setTest] = useState(false);
   const token = localStorage.getItem("token");
+  const [userRating, setUserRating] = useState(0);
+  const [rates, setRates] = useState({
+    rate: "",
+    userId: "",
+  });
+  const [create, setCreate] = useState({
+    name: "",
+    comment: "",
+    devId: "",
+    writedbyid: "",
+  });
+  const [comm, setComm] = useState([]);
 
   const isOffer = async () => {
     const oflg = await GetAllOff();
@@ -28,19 +44,17 @@ const OfferDetail = () => {
     setAllUser(users);
   };
 
-  const [create, setCreate] = useState({
-    adress: "",
-    zip: "",
-    city: "",
-    state: "",
-    email: "",
-  });
-
   const isUser = async () => {
     const AllUser = await CurrentUser();
 
     setUser(AllUser.data.user);
-
+    setCreate({
+      ...create,
+      name: AllUser.data.user.username,
+      writedbyid: AllUser.data.user._id,
+      devId: dev._id,
+    });
+    setRates({ ...rates, userId: AllUser.data.user._id });
     isUseroffer(user._id);
   };
 
@@ -52,44 +66,102 @@ const OfferDetail = () => {
         setTest(true);
       }
     });
+  };
 
-    Allusers.filter((el) => {
-      if (el._id === dev.createdbyId) {
-        setCreate({
-          ...create,
-          adress: el.adress,
-          zip: el.zip,
-          city: el.city,
-          state: el.state,
-          email: el.email,
-        });
-      }
+  const isComment = async () => {
+    const userLg = await GetAllCom();
+    setComm(userLg);
+  };
+
+  const handleSubmit = async () => {
+    const config = { headers: { "Content-Type": "application/json" } };
+    try {
+      const res = await axios.post("/api/comment/addcom", create, config);
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
+  };
+
+  const handelCheck = (e) => {
+    e.preventDefault();
+
+    if (!create.comment) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        footer: "Please write something !",
+      });
+    } else {
+      handleSubmit();
+      setCreate({
+        comment: "",
+      });
+    }
+  };
+  const handleUpdate = async () => {
+    // Apply rate
+    ApplyRate(dev._id, rates);
+    // Reset userRating
+    setUserRating(0);
+    // Update ping state
+    setPing(!ping);
+    // Show success message
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your data has been saved",
+      showConfirmButton: false,
+      timer: 1500,
     });
   };
-  console.log(create);
 
-  console.log(Allusers);
+  // Function to handle star rating click
+  const handleRatingClick = async (rating) => {
+    // Update userRating state immediately
+    setUserRating(rating);
+    // Update rates state with userRating
+    setRates((prevRates) => ({ ...prevRates, rate: rating }));
+  };
+
   useEffect(() => {
     isOffer();
     isUser();
     isUsers();
+    isComment();
     if (!hasScrolledRef.current) {
       window.scrollTo(0, 0);
       hasScrolledRef.current = true;
     }
-  }, [user]);
+    console.log(rates);
+  }, [user.length]);
+
+  // useEffect(() => {
+
+  //   isComment();
+  // }, [user]);
+
   return (
     <div>
       <section>
         <div className="container shadow my-5 py-5">
           <div className="row">
             <div className="col-md-6">
-              <div className="box-container">
-                {dev.images.map((el) => (
-                  <div className=" w-75 mt-5">
-                    <img src={el.filePath} alt />
-                  </div>
-                ))}
+              <div className="box-container w-75">
+                {dev.images && dev.images.length > 0 && (
+                  <Carousel>
+                    {dev.images.map((img, index) => (
+                      <Carousel.Item key={index}>
+                        <img
+                          className="d-block w-100"
+                          src={img.filePath}
+                          alt={`Slide ${index + 1}`}
+                        />
+                      </Carousel.Item>
+                    ))}
+                  </Carousel>
+                )}
               </div>
             </div>
             <div className="col-md-6">
@@ -97,55 +169,160 @@ const OfferDetail = () => {
               <br />
               <br />
               <br />
-              <h3 className="fs-5 mb-2"><b>Product:</b> {dev.prjectname}</h3>
-              <h3 className="fs-5 mb-2"><b>Type:</b> {dev.duree}</h3>
-              <h3 className="fs-5 mb-2"><b>Prix: </b>{dev.budget}</h3>
+              <h3 className="fs-5 mb-2">
+                <b>Product:</b> {dev.prjectname}
+              </h3>
+              <h3 className="fs-5 mb-2">
+                <b>Type:</b> {dev.duree}
+              </h3>
+              <h3 className="fs-5 mb-2">
+                <b>Prix: </b>
+                {dev.budget}
+              </h3>
               <h3 className="fs-5 mb-2">
                 <b>Date de publication:</b> {dev.date.substring(0, 10)}
               </h3>
-              <h3 className="fs-5 mb-2"><b>Propriétaire:</b> {dev.createdbyName}</h3>
-              <h3 className="fs-5 mb-2"><b>Color:</b> {dev?.colors}</h3>
-              <h3 className="fs-5 mb-2"><b>Brand:</b> {dev?.brand}</h3>
-             
+              <h3 className="fs-5 mb-2">
+                <b>Propriétaire:</b> {dev.createdbyName}
+              </h3>
+              <h3 className="fs-5 mb-2">
+                <b>Color:</b> {dev?.colors}
+              </h3>
+              <h3 className="fs-5 mb-2">
+                <b>Brand:</b> {dev?.brand}
+              </h3>
+              <br />
+              <h3 className="fs-5 mb-2">
+                <b>Adress:</b> {dev?.adress}
+              </h3>
 
               <hr />
               <p className="lead mb-4">{dev.detail}</p>
               <br />
-        <Badge variant="outline" colorScheme="blue">
-          <form action={`mailto:${create.email}`}>
-            <Button type="submit" variant="primary">
-              <i className="fas fa-paper-plane" />
-              {""}
-              Contacter le vendeur
-            </Button>
-          </form>
-        </Badge>
+              <h2>Would you like to Rate the Product :</h2>
+              <div>
+                <div>
+                  <span
+                    onClick={() => handleRatingClick(1)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "24px",
+                      marginRight: "10px",
+                      color: userRating >= 1 ? "orange" : "gray", // Color the stars based on rating
+                    }}
+                  >
+                    {userRating >= 1 ? "★" : "☆"}
+                  </span>
+                  <span
+                    onClick={() => handleRatingClick(2)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "24px",
+                      marginRight: "10px",
+                      color: userRating >= 2 ? "orange" : "gray", // Color the stars based on rating
+                    }}
+                  >
+                    {userRating >= 2 ? "★" : "☆"}
+                  </span>
+                  <span
+                    onClick={() => handleRatingClick(3)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "24px",
+                      marginRight: "10px",
+                      color: userRating >= 3 ? "orange" : "gray", // Color the stars based on rating
+                    }}
+                  >
+                    {userRating >= 3 ? "★" : "☆"}
+                  </span>
+                  <span
+                    onClick={() => handleRatingClick(4)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "24px",
+                      marginRight: "10px",
+                      color: userRating >= 4 ? "orange" : "gray", // Color the stars based on rating
+                    }}
+                  >
+                    {userRating >= 4 ? "★" : "☆"}
+                  </span>
+                  <span
+                    onClick={() => handleRatingClick(5)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "24px",
+                      color: userRating >= 5 ? "orange" : "gray", // Color the stars based on rating
+                    }}
+                  >
+                    {userRating >= 5 ? "★" : "☆"}
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="btn btn-danger w-25 mt-4 rounded-pill"
+                onClick={handleUpdate}
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="detailing" id="">
-        <table class="table">
-          
-          <thead>
-            <tr>
-              <th scope="col">Adresse</th>
-              <th scope="col">Ville</th>
-              <th scope="col">délégation</th>
-              <th scope="col">Zip</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="row">{create.adress}</td>
-              <td>{create.city}</td>
-              <td>{create.state}</td>
-              <td>{create.zip}</td>
-            </tr>
-          </tbody>
-        </table>
+      <section>
+        <div className="container ml-5 mt-5 row">
+          <h2 className="mb-4">
+            <b>Comment Section</b>
+          </h2>
+          <div className="comments">
+            <div className="comment">
+              {comm
+                .filter((el) => el.devId === dev._id)
+                .map((el) => (
+                  <>
+                    <div className="comment-author">
+                      <div className="comment-author-details">
+                        <span className="comment-author-name">
+                          {el.name}&nbsp;
+                        </span>
+                        <span className="comment-date">
+                          Posted on {el.date.substring(0, 10)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="comment-content">
+                      <p>{el.comment}</p>
+                      <div className="crded">
+                        {" "}
+                        <Comments com={el} />
+                      </div>
+                    </div>
+                  </>
+                ))}
+            </div>
+          </div>
+          <>
+            <form className="comment-form">
+              <div className="form-group w-75">
+                <textarea
+                  onChange={(e) =>
+                    setCreate({ ...create, comment: e.target.value })
+                  }
+                  className="form-control"
+                  placeholder="Write your comment here..."
+                  rows="3"
+                />
+              </div>
+              <Button onClick={handelCheck} variant="success">
+                Send
+              </Button>
+            </form>
+          </>
+        </div>
       </section>
+
+      <Footer />
     </div>
   );
 };

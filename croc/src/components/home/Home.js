@@ -9,14 +9,18 @@ import Banner from "../slider/Banner";
 import BannerBottom from "../slider/BannerBottom";
 import Sale from "../screens/Sale/Sale";
 import Footer from "../screens/Footer/Footer";
+import SpecialCase from "../SpecialCase/SpecialCase";
 
 const Home = () => {
   const isAdmin = localStorage.getItem("isAdmin");
   const token = localStorage.getItem("token");
   return (
+    
     <div className="home ">
+      <SpecialCase/>
+
   <section>
-    <div className="div1 row ">
+    {/* <div className="div1 row ">
       <div className="div2 col-md-6 ">
         <div className="container txte justify-content-center leadder">
           <h1 className="lead text-center fs-1 mb-5 text-black ">
@@ -34,8 +38,8 @@ const Home = () => {
         </div>
       </div>
       <div className="div3 col-md-6"></div>
-    </div>
-    <div className="w-full mx-auto">
+    </div> */}
+    <div className="w-full mx-auto mt-5">
       <Banner/>
       <BannerBottom/>
     </div>
@@ -43,9 +47,9 @@ const Home = () => {
     <div className=" about">
       <About id="contact" id1="services" />
     </div>
-    <div className="contact">
+    {/* <div className="contact">
       {!isAdmin && token && <Contact id="contact" />}
-    </div>
+    </div> */}
   </section>
   <div className="homeft">
   <Footer />

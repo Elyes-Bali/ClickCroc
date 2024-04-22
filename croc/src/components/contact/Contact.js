@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Contact.css"
 import { CurrentUser} from "../../apis/UserApi";
+import Footer from "../screens/Footer/Footer";
 const Contact = ({id}) => {
   const [user,setUser]=useState({});
   const isUser = async () => {
@@ -127,7 +128,11 @@ const Contact = ({id}) => {
         </div>
       </div>
     </div>
+    <div className="contactft">
+    <Footer/>
+    </div>
   </section>
+  
 </div>
 
   );

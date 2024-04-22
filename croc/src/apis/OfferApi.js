@@ -89,3 +89,16 @@ export const GetAllOff = async () => {
       console.log(error);
     }
   };
+
+
+  export const ApplyRate = async (id,rates) => {
+  
+    try {
+      const config = { headers: { "Content-Type": "application/json" } };
+    const res = await axios.put(`/api/offer/rating/${id}`, rates, config);
+      //  console.log(res.data.offers)
+      // return res.data.offers;
+    } catch (error) {
+      console.log(error);
+    }
+  };

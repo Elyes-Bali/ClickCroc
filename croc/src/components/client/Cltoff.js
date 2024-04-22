@@ -33,12 +33,21 @@ const Cltoff = ({ off, devs, key }) => {
         </Card.Text>
         <br />
         <Card.Text>
+          <b>Color: </b>
+          {off?.colors}
+        </Card.Text>
+        <br />
+        <Card.Text>
           <b>Date: </b>
           {off.date.substring(0, 10)}
         </Card.Text>
         <br />
         <Card.Text>
           <b>Owner: </b>{off.createdbyName}
+        </Card.Text>
+        <br />
+        <Card.Text>
+          <b>Brand: </b>{off?.brand}
         </Card.Text>
         <br />
         <b>Details: </b>

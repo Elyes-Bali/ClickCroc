@@ -30,6 +30,7 @@ const CreateOffers = () => {
     duree: "",
     colors: "",
     brand: "",
+    adress:"",
     images: [],
   });
 
@@ -93,7 +94,8 @@ const CreateOffers = () => {
       !create.duree ||
       !create.colors ||
       !create.brand ||
-      !create.images
+      !create.images ||
+      !create.adress
     ) {
       Swal.fire({
         icon: "error",
@@ -218,6 +220,17 @@ const CreateOffers = () => {
               value={create?.colors}
               onChange={(e) =>
                 setCreate({ ...create, colors: e.target.value })
+              }
+            />
+            <br />
+            <Form.Label>Full Adress</Form.Label>
+            <Form.Control
+              className="form-control"
+              type="text"
+              placeholder="Adress?"
+              value={create?.adress}
+              onChange={(e) =>
+                setCreate({ ...create, adress: e.target.value })
               }
             />
             <br />

@@ -101,6 +101,15 @@ const ModalCl = ({ offrr, keey }) => {
         <br />
         <Form.Group>
           <Form.Control
+            type="text"
+            placeholder="Color"
+            value={offer?.colors}
+            onChange={(e) => setOffer({ ...offer, colors: e.target.value })}
+          />
+        </Form.Group>
+        <br />
+        <Form.Group>
+          <Form.Control
             as="textarea"
             placeholder="Describe your product details"
             rows={5}

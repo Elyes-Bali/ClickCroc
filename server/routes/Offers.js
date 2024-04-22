@@ -5,7 +5,7 @@ const offerSchema = require("../models/offerSchema");
 router.post("/create", async (req, res) => {
   try {
     // Get body or Data
-    const { createdbyId, createdbyName, prjectname, budget, detail,duree,images,colors,brand } = req.body;
+    const { createdbyId, createdbyName, prjectname, budget, detail,duree,images,colors,brand,adress } = req.body;
     // console.log(name,email,title,linkedin,github,phone,project,project1,project2,
     //   languages,languages1,languages2,college,summary)
 
@@ -18,7 +18,8 @@ router.post("/create", async (req, res) => {
       duree,
       images,
       colors,
-      brand
+      brand,
+      adress
     });
 
     const created = await createofferSchema.save();
@@ -114,5 +115,14 @@ router.delete("/deloffer/:id", async(req,res)=>{
      console.log(error);
   }
 })
+
+router.put("/rating/:id", async (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+  await offerSchema.findOneAndUpdate(
+    { _id: req.params.id },
+    { $addToSet: { rating: req.body } }
+  );
+});
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-bootstrap';
 
 const Footer = () => {
   return (
@@ -10,13 +11,31 @@ const Footer = () => {
           
           <div className="row">
           <hr/>
-            <div className="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0">
+            <div className="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0 mt-4">
               <h4 className="footer_title"><b>More about C&C Shop</b></h4>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in.
               </p>
+              <ul className="list-unstyled d-flex mt-3">
+                <li className="ms-3">
+                  <NavLink className="" target="_blank" href="https://www.facebook.com">
+                    <i className="fa fa-facebook fa-2x"></i>
+                  </NavLink>
+                </li>
+                <li className="ms-3">
+                  <NavLink className="" target="_blank" href="https://www.instagram.com">
+                    <i className="fa fa-instagram fa-2x"></i>
+                  </NavLink>
+                </li>
+                <li className="ms-3">
+                  <NavLink className="" target="_blank" href="https://www.twitter.com">
+                    <i className="fa fa-twitter fa-2x"></i>
+                  </NavLink>
+                </li>
+              </ul>
             </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 mb-4 mb-lg-0 mt-5">
+            
+            <div className="col-lg-2 col-md-6 col-sm-6 mb-4 mb-lg-0 mt-4">
               <h4 className="footer_title"><b>Shop</b></h4>
               <ul className="list-unstyled">
                 <li>
@@ -36,7 +55,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 mb-4 mb-lg-0 mt-4">
+            <div className="col-lg-2 col-md-6 col-sm-6 mb-4 mb-lg-0 ">
               <h4 className="footer_title"><b>Your account</b></h4>
               <ul className="list-unstyled">
                 <li>
@@ -53,7 +72,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-6 mt-5">
+            <div className="col-lg-4 col-md-6 col-sm-6 mt-4">
               <h4 className="footer_title mt-3"><b>Subscribe to our newsletter</b></h4>
               <p>
                 A at pellentesque et mattis porta enim elementum.
@@ -70,7 +89,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="row justify-content-center mt-4">
+          <div className="row justify-content-center ">
             <div className="col-lg-6 col-md-6 col-sm-6 text-center">
               <div className="payment_method">
                 {/* <img

@@ -47,7 +47,7 @@ const CustomSlide = ({ Subtext, imgSrc, text, buttonLink, buttonText }) => (
       </p>
 
       <Link to="/market">
-        <button className="btn btn-primary rounded-pill text-white text-lg font-bodyFont w-[185px] h-[50px] hover:bg-black duration-300 font-bold">
+        <button className="btn btn-dark rounded-pill text-white text-lg font-bodyFont w-[185px] h-[50px] hover:bg-black duration-300 font-bold">
           {buttonText}
         </button>
       </Link>

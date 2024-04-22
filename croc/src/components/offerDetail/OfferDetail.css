@@ -384,6 +384,7 @@ header .navbar ul li a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+ 
 }
 
 .image-frame {
@@ -397,3 +398,92 @@ header .navbar ul li a:hover {
   max-height: 100%;
   display: block;
 }
+
+/**************************************************/
+.comments {
+  margin-top: 20px;
+}
+
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-author-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-content {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comment-author-name {
+  font-weight: bold;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.comment-form textarea {
+  resize: vertical;
+}
+.nmcm {
+  text-align: left !important;
+}
+.cmmt {
+  text-align: left !important;
+}
+.crded {
+  display: flex !important;
+  justify-content: right !important;
+  margin-right: 1%;
+}
+
+.star-rating {
+  font-size: 24px; /* Adjust the size of the stars */
+}
+
+.star {
+  display: inline-block;
+  cursor: pointer; /* Set the cursor to pointer to indicate interactivity */
+}
+
+.star.filled {
+  color: gold; /* Change the color of filled stars */
+}
+/* Style for the select dropdown */
+.select-rating {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  padding: 0;
+}
+
+/* Style for the star icons */
+.select-rating option {
+  padding: 0;
+  font-size: 24px;
+  color: transparent;
+  text-shadow: 0 0 0 #ffdd00; /* Yellow color for filled stars */
+}
+
+/* Style for the selected star */
+.select-rating option:checked {
+  color: #ffdd00; /* Yellow color for selected star */
+}
+
