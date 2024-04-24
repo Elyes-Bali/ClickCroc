@@ -5,10 +5,8 @@ const offerSchema = require("../models/offerSchema");
 router.post("/create", async (req, res) => {
   try {
     // Get body or Data
-    const { createdbyId, createdbyName, prjectname, budget, detail,duree,images,colors,brand,adress } = req.body;
-    // console.log(name,email,title,linkedin,github,phone,project,project1,project2,
-    //   languages,languages1,languages2,college,summary)
-
+    const { createdbyId, createdbyName, prjectname, budget, detail,duree,images,colors,brand,adress,gamme,prdmake } = req.body;
+   
     const createofferSchema = new offerSchema({
       createdbyId,
       createdbyName,
@@ -19,7 +17,9 @@ router.post("/create", async (req, res) => {
       images,
       colors,
       brand,
-      adress
+      adress,
+      gamme,
+      prdmake
     });
 
     const created = await createofferSchema.save();

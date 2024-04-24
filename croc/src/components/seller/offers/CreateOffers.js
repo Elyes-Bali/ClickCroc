@@ -31,6 +31,8 @@ const CreateOffers = () => {
     colors: "",
     brand: "",
     adress:"",
+    gamme:"",
+    prdmake:"",
     images: [],
   });
 
@@ -95,7 +97,9 @@ const CreateOffers = () => {
       !create.colors ||
       !create.brand ||
       !create.images ||
-      !create.adress
+      !create.adress ||
+      !create.gamme ||
+      !create.prdmake
     ) {
       Swal.fire({
         icon: "error",
@@ -201,7 +205,7 @@ const CreateOffers = () => {
               </NumberInputStepper>
             </NumberInput>
             <br />
-            <Form.Label>Type</Form.Label>
+            <Form.Label>Family</Form.Label>
             <Form.Control
               className="form-control"
               type="text"
@@ -212,6 +216,29 @@ const CreateOffers = () => {
               }
             />
             <br />
+            <Form.Label>Product maker</Form.Label>
+            <Form.Control
+              className="form-control"
+              type="text"
+              placeholder="What type is it?"
+              value={create?.prdmake}
+              onChange={(e) =>
+                setCreate({ ...create, prdmake: e.target.value })
+              }
+            />
+            <br />
+            <Form.Label>Gamme</Form.Label>
+            <Form.Control
+              className="form-control"
+              type="text"
+              placeholder="What type is it?"
+              value={create?.gamme}
+              onChange={(e) =>
+                setCreate({ ...create, gamme: e.target.value })
+              }
+            />
+            <br />
+          
             <Form.Label>Color</Form.Label>
             <Form.Control
               className="form-control"
@@ -223,7 +250,7 @@ const CreateOffers = () => {
               }
             />
             <br />
-            <Form.Label>Full Adress</Form.Label>
+            <Form.Label>Product Area</Form.Label>
             <Form.Control
               className="form-control"
               type="text"

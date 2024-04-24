@@ -213,7 +213,10 @@ const OfferDetail = ({ ping, setPing }) => {
                 <b>Date de publication:</b> {dev.date.substring(0, 10)}
               </h3>
               <h3 className="fs-5 mb-2">
-                <b>Propriétaire:</b> {dev.createdbyName}
+                <b>Product maker:</b> {dev?.prdmake}
+              </h3>
+              <h3 className="fs-5 mb-2">
+                <b>Product maker:</b> {dev?.gamme}
               </h3>
               <h3 className="fs-5 mb-2">
                 <b>Color:</b> {dev?.colors}

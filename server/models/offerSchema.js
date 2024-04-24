@@ -59,6 +59,14 @@ const offerSchema = new mongoose.Schema({
         type : String,
         
     },
+    gamme : {
+        type : String,
+        
+    },
+    prdmake : {
+        type : String,
+        
+    },
     date :{
         type : Date,
         default: Date.now()
