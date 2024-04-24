@@ -76,3 +76,15 @@ export const CurrentUser = async () => {
       console.log(error);
     }
   };
+
+    
+  export const GetAllManu = async () => {
+    
+    try {
+      const res = await axios.get("/api/user/allman");
+       
+      return res.data.clts;
+    } catch (error) {
+      console.log(error);
+    }
+  };

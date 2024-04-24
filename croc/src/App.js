@@ -38,6 +38,13 @@ import Chartusers from "./components/charts/Chartusers";
 
 import Contact from "./components/contact/Contact";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
+import ClienDB from "./components/dashboard/ClienDB";
+import ManuProfile from "./components/manuDashboard/manuProfile/ManuProfile";
+import ManuChart from "./components/manuDashboard/manuChart/ManuChart";
+import Description from "./components/description/Description";
+import Blog from "./components/Blog/Blog";
+import BlogPage from "./components/Blog/blogpage/BlogPage";
+import AdminBlogs from "./components/dashboard/adminBlogs/AdminBlogs";
 
 
 
@@ -45,6 +52,7 @@ function App() {
   const [ping,setPing]=useState(false)
   const token = localStorage.getItem("token");
   const isAdmin = localStorage.getItem("isAdmin");
+  const isManufacturer = localStorage.getItem("isManufacturer");
   return (
     <div>
       
@@ -52,6 +60,9 @@ function App() {
      
       {/* <Header/> */}
     {token && isAdmin &&
+      <SideBar />}
+
+{token && isManufacturer && 
       <SideBar />}
      
       <Routes>
@@ -79,7 +90,10 @@ function App() {
         <Route path="/adof" element={<AdminOffers/>} />
         <Route path="/alluser" element={<ChartDb/>} />
         <Route path="/alloff" element={<Chartusers/>} />
-        <Route path="/adprof" element={<AdminProfile ing={ping} setPing={setPing}/>} />
+        <Route path="/allclt" element={<ClienDB/>} />
+        <Route path="/adblogs" element={<AdminBlogs/>} />
+        
+        <Route path="/adprof" element={<AdminProfile ping={ping} setPing={setPing}/>} />
         </Route>
         <Route path="/Create" element={<CreateOffers />} />
         <Route path="/market" element={<Market />} />
@@ -88,7 +102,12 @@ function App() {
 
         <Route path="/clt" element={<ClientProfile />} />
         <Route path="/wish" element={<Wishlist />} />
+        <Route path="/manuprof" element={<ManuProfile ping={ping} setPing={setPing}/>} />
+        <Route path="/manuchart" element={<ManuChart/>} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/description" element={<Description />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/allblog" element={<BlogPage />} />
    
 
         

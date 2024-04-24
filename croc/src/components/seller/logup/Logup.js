@@ -15,8 +15,10 @@ const Logup = () => {
       username : "",
       email : "",
       password : "",
-      role : "sel",
+      role : "",
       pic : "",
+      company:"",
+      authorize:false
     });
     
     //Handle Input
@@ -43,45 +45,18 @@ const Logup = () => {
         if (res.status === 400 || !res ){
           window.alert("Already Used Details");
         }else{
-      setUser({...user,role:"sel"});
-         
+          
           window.alert("Registered Successfully");
-          try {
-            const res = await axios.post("/api/user/login", user, config);
-            const getAdmin=localStorage.getItem("isAdmin");
-            localStorage.setItem("token", res.data.token);
-            res.data.searchedUser.isAdmin && localStorage.setItem("isAdmin", res.data.searchedUser.isAdmin);
-            console.log(res.data.searchedUser);
-            if (res.data.searchedUser.role === "sel") {
-              localStorage.setItem("isSeller", res.data.searchedUser.role);
-              navigate("/");
-              window.location.reload();
-            }
-           
-      
-            if (res.data.searchedUser.isAdmin.toString()=="true" ) {
-              navigate("/dashboard");
-              window.location.reload();
-            }
-          } catch (error) {
-            const { errors, msg } = error.response.data;
-            if (Array.isArray(errors)) {
-              errors.map((el) => alert(el.msg));
-            }
-            if (msg) {
-              alert(msg);
-            }
-      
-            console.log(error);
-          }
-          // navigate('/login')
+          navigate('/login')
         }
       } catch (error) {
         console.log(error);
       }
     }
     
-  
+    const handleCheckboxChange = () => {
+      setUser({...user, authorize: !user.authorize});
+    }
   
   
     const handelCheck = (e) => {
@@ -93,7 +68,7 @@ const Logup = () => {
       e.preventDefault();
    
         
-      if (!user.username || !user.email|| !user.password || !user.role) {
+      if (!user.username || !user.email|| !user.password || !user.role || !user.company) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -118,7 +93,7 @@ const Logup = () => {
   
     useEffect(()=>{
       isUsers();
-      setUser({...user,role:"sel"});     
+      // setUser({...user,role:"sel"});     
     },[])
   
   
@@ -187,8 +162,23 @@ const Logup = () => {
                   onChange={handleInput}
                 />
               </div>
+
+              <div className="mb-3">
+                <label htmlFor="company" className="form-label">
+                  Company
+                </label>
+                <input
+                  placeholder="Company"
+                  type="text"
+                  className="form-control"
+                  id="company"
+                  name="company"
+                  value={user.company}
+                  onChange={handleInput}
+                />
+              </div>
               <div>
-                {/* <label for="InputRole" className="form-label">
+                <label for="InputRole" className="form-label">
                     Role
                   </label>
                   <select
@@ -198,7 +188,8 @@ const Logup = () => {
                   >
                     <option>--SELECT--</option>
                     <option value="sel">Seller</option>
-                  </select> */}
+                    <option value="manufacturer">Manufacturer </option>
+                  </select>
               </div>
               <br />
               <div className="mb-3 form-check">

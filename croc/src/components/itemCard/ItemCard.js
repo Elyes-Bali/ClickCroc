@@ -15,7 +15,7 @@ const ItemCard = ({dev,use}) => {
 
     setUser(AllUser.data.user);
   };
-  console.log(user)
+  // console.log(user)
   const [create, setCreate] = useState({
     ownerId: "",
     productId: dev._id,
@@ -23,6 +23,8 @@ const ItemCard = ({dev,use}) => {
     brande: dev.brand,
     price: dev.budget,
     images: dev.images,
+    rates:dev.rating,
+    
   });
   const hundelUpdate1 =()=>{
     
@@ -48,7 +50,19 @@ const ItemCard = ({dev,use}) => {
       }
     })
   }
+  let totalRate = 0;
+  let totalNumber= 0;
+
+  // Iterate over each rating and sum up the rates
+  create.rates.forEach(rating => {
+    totalRate += rating.rate;
+    totalNumber+=1
+  });
   
+  // Calculate the average rate
+  const averageRate = totalRate /totalNumber
+  // console.log(averageRate)
+  // console.log(totalNumber)
 
   const handleSubmit = async () => {
    
@@ -64,7 +78,7 @@ const ItemCard = ({dev,use}) => {
       console.log(error);
     }
   };
-  console.log(create) 
+  // console.log(create) 
   useEffect(() => {
     isUser();
     setCreate({...create,ownerId:user._id});
@@ -89,6 +103,11 @@ const ItemCard = ({dev,use}) => {
         <Card.Text>
           {dev?.detail?.substring(0,50)}...
         </Card.Text>
+        <Card.Text>
+  {isNaN(averageRate) ? "Not rated yet" : averageRate.toString().substring(0, 3)}&nbsp;<i class="fa fa-star" aria-hidden="true"></i>
+</Card.Text>
+
+        
         {/* Multiple buttons */}
         <div className="button-container">
           <Link to={`/dev/${dev._id}`} state={{ dev: dev }}>

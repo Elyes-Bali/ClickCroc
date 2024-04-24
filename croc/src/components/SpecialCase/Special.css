@@ -1,3 +1,44 @@
 .navbar-container {
   height: 20px !important; /* Set your desired height */
 }
+.searcher {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px; /* Adjust the position of the icon as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa; /* Icon color */
+}
+
+.searcher input {
+  width: calc(170% - 30px); /* Adjust width to accommodate the icon */
+  padding: 10px 10px 10px 30px; /* Adjust padding to create space for the icon */
+  font-size: 16px; /* Adjust font size as needed */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 5px; /* Border radius for rounded corners */
+  outline: none; /* Remove outline on focus */
+}
+
+.searcher input:focus {
+  border-color: #007bff; /* Border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+}
+
+/* Add this CSS to your stylesheet */
+
+/* Add this CSS to your stylesheet */
+
+.resultres{
+  display: grid !important;
+  margin-top: 39% !important;
+  position: absolute !important;
+  width: 50% !important;
+  border: 20px solid transparent;
+  border-radius: 10rem;
+  margin-left: 342px;
+  z-index: 1;
+  /* overflow-y: hidden; */
+}

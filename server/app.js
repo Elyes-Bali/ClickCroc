@@ -23,7 +23,9 @@ app.use("/api/offer/upload",require("./routes/PhotoImgsUpload"));
 app.use("/api/offer",require ('./routes/Offers') );
 app.use("/api/wish",require ('./routes/Wish') );
 app.use("/api/sendemail", require('./routes/RouteMessage'));
-app.use("/api/comment", require('./routes/Comments'))
+app.use("/api/comment", require('./routes/Comments'));
+app.use("/api/blog", require('./routes/Blog'));
+app.use("/api/blog/upload",require("./routes/PhotoImgsUpload"));
 
 
 

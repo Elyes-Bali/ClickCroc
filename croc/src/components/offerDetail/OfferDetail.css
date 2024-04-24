@@ -487,3 +487,10 @@ header .navbar ul li a:hover {
   color: #ffdd00; /* Yellow color for selected star */
 }
 
+.comment-form{
+  margin-bottom: 5% !important;
+}
+
+.detailfooter{
+  margin-top: -20% !important;
+}

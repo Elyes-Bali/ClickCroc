@@ -67,3 +67,21 @@
     background-color: transparent !important;
   }
   
+  .navsearch{
+    padding-right: 20% !important;
+  }
+
+  .navcardres{
+    display: grid !important;
+    margin-top: -20px !important;
+    position: absolute !important;
+    width: 44% !important;
+    border: 20px solid transparent;
+    border-radius: 10rem;
+    margin-left: -23px;
+    z-index: 1;
+  }
+
+  .btnt{
+    width: 300px !important;
+  }

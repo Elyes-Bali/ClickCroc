@@ -83,7 +83,7 @@ const Footer = () => {
                   className="email_input form-control mb-2"
                   placeholder="Insert your email..."
                 />
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-dark">
                   Subscribe
                 </button>
               </div>

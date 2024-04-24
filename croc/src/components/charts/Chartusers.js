@@ -6,7 +6,7 @@ import {
 import { Bar  } from "react-chartjs-2";
 import "./CharDb.css";
 
-import { GetAllClt, GetAllSel, GetAllUsers } from "../../apis/UserApi";
+import { GetAllClt, GetAllManu, GetAllSel, GetAllUsers } from "../../apis/UserApi";
 
 ChartJS.register(
     BarElement,
@@ -20,6 +20,7 @@ const Chartusers = () => {
   };
   const [allclt, setAllclt] = useState([]);
   const [alldev, setAlldev] = useState([]);
+  const [allmanu, setAllManu] = useState([]);
   
   
   const isClt = async () => {
@@ -30,7 +31,10 @@ const Chartusers = () => {
     const uslg = await GetAllSel();
     setAlldev(uslg);
   };
-
+  const isManu = async () => {
+    const uslg = await GetAllManu();
+    setAllManu(uslg);
+  };
 
   const clt = ()=>{
     var nbr = 0;
@@ -58,6 +62,20 @@ const Chartusers = () => {
   const nbrdev= dev()
 
 
+  
+  const manu = ()=>{
+    var nbr = 0;
+    
+    allmanu.filter((el)=>{
+        if (el.isAdmin!=true) {
+          nbr +=1
+        }
+      })
+  return nbr
+  }
+  const nbrmanu= manu()
+
+
   const Count = ()=>{
     var nbr = 0;
     
@@ -70,10 +88,12 @@ const Chartusers = () => {
   }
   const nbruser= Count()
 
+
   useEffect(() => {
     isClt();
 isDevs();
 isUsers();
+isManu();
   }, []);
   const options = {
     responsive: true,
@@ -89,11 +109,11 @@ isUsers();
   };
 
   const data = {
-    labels:[ 'Sellers','Clients'],
+    labels:[ 'Sellers','Clients',"Manufacturers"],
     datasets: [
       {
         label: `${nbruser} Users Available`,
-        data: [nbrdev,nbrclt],
+        data: [nbrdev,nbrclt,nbrmanu],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",

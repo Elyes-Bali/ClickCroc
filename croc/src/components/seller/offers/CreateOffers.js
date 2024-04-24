@@ -143,8 +143,8 @@ const CreateOffers = () => {
               
               <li className="list-item">
               <a href="/alluser" className="nav-link">
-                <i className="list-item-icon fas fa-database" />
-                <span className="list-item-text">Offers</span>
+              <i class="fa fa-product-hunt" aria-hidden="true"/> &nbsp;
+                <span className="list-item-text">Products</span>
               </a>
             </li>
             <li className="list-item">
@@ -248,6 +248,7 @@ const CreateOffers = () => {
                 <option value="Monoprix">MONOPRIX</option>
                 <option value="Carrefour">CARREFOUR</option>
                 <option value="Mg">MG</option>
+                <option value="Aziza">AZIZA</option>
               </select>
             </div>
             <br />

@@ -42,6 +42,11 @@ const Login = () => {
         navigate("/");
         window.location.reload();
       }
+      if (res.data.searchedUser.role === "manufacturer") {
+        localStorage.setItem("isManufacturer", res.data.searchedUser.role);
+        navigate("/manuprof");
+        window.location.reload();
+      }
 
       if (res.data.searchedUser.isAdmin.toString()=="true" ) {
         navigate("/dashboard");

@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = ({ id, id1 }) => {
+const About = () => {
   const isAdmin = localStorage.getItem("isAdmin");
   const token = localStorage.getItem("token");
   return (
@@ -34,7 +34,7 @@ const About = ({ id, id1 }) => {
               {!isAdmin && token && (
                 <a
                   href="/market"
-                  className="btn btn-primary rounded-pill px-4 py-2 ms-2"
+                  className="btn btn-dark rounded-pill px-4 py-2 ms-2"
                 >
                   Explore Now
                 </a>

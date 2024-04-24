@@ -36,6 +36,9 @@ const offerSchema = new mongoose.Schema({
        
         
     },
+    totalRates : {
+        type : Number,
+    },
     detail : {
         type : String,
         

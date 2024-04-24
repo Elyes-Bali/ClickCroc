@@ -17,6 +17,7 @@ const Market = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [user, setUser] = useState({});
+  const[avg, setAvg] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
   const isDevs = async () => {
@@ -58,6 +59,71 @@ const Market = () => {
     }
   };
 
+// const avrageRateHandler=()=>{
+//   let sumRates=0;
+//   const avgRates = listdev.filter((item) => );
+  
+// }
+
+const calculateAverageRating = (item) => {
+  if (!item || !item.rating || !Array.isArray(item.rating) || item.rating.length === 0) {
+    return 0; // Return 0 if the item or its rating array is invalid or empty
+  }
+
+  // Calculate the sum of all ratings
+  const totalRating = item.rating.reduce((sum, rating) => sum + rating.rate, 0);
+
+  // Calculate the average rating
+  const averageRating = totalRating / item.rating.length;
+
+  return averageRating;
+};
+
+// Calculate average ratings for all items in listdev
+const averageRatings = listdev.map(calculateAverageRating);
+
+console.log("Average Ratings:", averageRatings);
+
+
+// Filter products based on average rating within a range
+const filterByRating = (range) => {
+  const filteredByRating = listdev.filter((item) => {
+    const averageRating = calculateAverageRating(item);
+    return averageRating >= range.min && averageRating <= range.max;
+  });
+  setFilteredResults(filteredByRating);
+};
+
+// Define ranges
+// Define ranges
+// Define ranges
+const ratingRanges = [
+  { min: 1, max: 1 },
+  { min: 2, max: 2 },
+  { min: 3, max: 3 },
+  { min: 4, max: 4 },
+  { min: 5, max: 5 },
+];
+
+// Display buttons for each rating range
+// Display dropdown selector for rating range
+const ratingSelector = (
+  <input
+    type="range"
+    min="0"
+    max={ratingRanges.length - 1}
+    onChange={(e) => filterByRating(ratingRanges[e.target.value])}
+  />
+);
+
+// Use the ratingSelector to display the filter dropdown
+
+
+
+
+
+
+
   const currentItemsToDisplay =
     filteredResults.length > 0 ? filteredResults : currentItems;
 
@@ -73,7 +139,7 @@ const Market = () => {
       setFilteredResults(filteredByPrice);
     }
   };
-
+console.log(listdev);
   useEffect(() => {
     isDevs();
     isUser();
@@ -134,47 +200,7 @@ const Market = () => {
       <div className="d-flex justify-content-center mt-5 bg-transparent">
         <Brand/>
       </div>
-      {/* <div className="mainSection">
-        <div className="contentBox">
-          <h1 className="text-bold">Welcome to the Market</h1>
-          <p>
-            A world of products at your fingertips{" "}
-            <i className="fa fa-diamond" aria-hidden="true"></i>
-            <br />
-          </p>
-
-          <div>
-            <div className="btnn rounded-pill ">
-              <Input
-                icon="search"
-                placeholder="Search..."
-                onChange={handleSearch}
-                value={searchInput}
-              />
-            </div>
-          </div>
-          <CardGroup
-            className="cardres "
-            itemsPerRow={3}
-            style={{ marginTop: 20 }}
-          >
-            {searchInput &&
-              filteredResults &&
-              filteredResults.map((item) => {
-                return (
-                  <Card>
-                    <Link to={`/dev/${item._id}`} state={{ dev: item }}>
-                      <CardHeader>{item.prjectname}</CardHeader>
-                    </Link>
-                  </Card>
-                );
-              })}
-          </CardGroup>
-        </div>
-        <div className="imgContainer">
-          <img src="/images/market1.png" alt="home" />
-        </div>
-      </div> */}
+     
 
       <div className="container py-4">
         <div className="row">
@@ -206,7 +232,7 @@ const Market = () => {
                 </select>
                 <br />
                 <p className="mb-3 mt-3">
-                  <b>Shop by Price</b>{" "}
+                  <b>Sort by Price</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </p>
                 <label htmlFor="price">Price Range:</label>
@@ -219,6 +245,13 @@ const Market = () => {
                   onChange={handlePriceFilter}
                 />
                 <div>Selected Price Range: {selectedPrice}TND</div>
+                <p className="mb-3 mt-3">
+                  <b>Sort by Rate</b>{" "}
+                  <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                </p>
+                <div className="rating-filters">
+      {ratingSelector}
+    </div>
               </div>
             </div>
             <div className="col-md-9">

@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
 router.post("/logup", async (req, res) => {
   try {
     // Get body or Data
-    const { username, email, password, role } = req.body;
+    const { username, email, password, role,authorize,company } = req.body;
     console.log(username, email, password);
 
     const createUser = new User({
@@ -42,6 +42,8 @@ router.post("/logup", async (req, res) => {
       email,
       password,
       role,
+      authorize,
+      company
     });
 
     // Save Method is Used to Create User or Insert User
@@ -131,6 +133,17 @@ router.get("/allclt", async (req, res) => {
     console.log(error);
   }
 });
+
+router.get("/allman", async (req, res) => {
+  try {
+    const result = await User.find({ role: "manufacturer" });
+    res.status(200).send({ clts: result });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 router.put("/apply/:id", async (req, res) => {
   console.log(req.body);
   console.log(req.params.id);

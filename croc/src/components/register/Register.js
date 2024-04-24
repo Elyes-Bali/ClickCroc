@@ -212,7 +212,7 @@ const Register = () => {
               </label>
             </div>
             <div  >
-            Wanna be A Seller ? <Link to="/logup">click here</Link>
+            Wanna be A part of us? <Link to="/logup">click here</Link>
 
             </div>
 

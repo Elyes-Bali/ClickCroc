@@ -9,7 +9,7 @@ import Banner from "../slider/Banner";
 import BannerBottom from "../slider/BannerBottom";
 import Sale from "../screens/Sale/Sale";
 import Footer from "../screens/Footer/Footer";
-import SpecialCase from "../SpecialCase/SpecialCase";
+
 
 const Home = () => {
   const isAdmin = localStorage.getItem("isAdmin");
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     
     <div className="home ">
-      <SpecialCase/>
+    
 
   <section>
     {/* <div className="div1 row ">

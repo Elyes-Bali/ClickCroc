@@ -3,12 +3,35 @@ import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { CurrentUser } from "../../apis/UserApi";
 import { Avatar } from "@chakra-ui/react";
+import { GetAllOff } from "../../apis/OfferApi";
+import { Input, Button } from "@chakra-ui/react";
+import { Card, CardGroup } from "react-bootstrap";
+import CardHeader from "react-bootstrap/esm/CardHeader";
 const Navbar = ({ ping }) => {
   const [user, setUser] = useState({});
   const token = localStorage.getItem("token");
   const isAdmin = localStorage.getItem("isAdmin");
   const isSeller = localStorage.getItem("isSeller");
+  const isManufacturer = localStorage.getItem("isManufacturer");
+
   const location = useLocation();
+  const [listoff, setListOff] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const isOff = async () => {
+    const AllOff = await GetAllOff();
+
+    setListOff(AllOff);
+  };
+  const handleSearch = (e) => {
+    setSearchInput(e.target.value.toLowerCase());
+    const searchFruits = listoff.filter((el) => {
+      return el.prjectname.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    setFilteredResults(searchFruits);
+  };
 
   // Custom function to determine if the current path matches the given href
   const isActive = (href) => {
@@ -19,6 +42,7 @@ const Navbar = ({ ping }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("isSeller");
+    localStorage.removeItem("isManufacturer");
   };
 
   const isLoggedIn = async () => {
@@ -28,6 +52,7 @@ const Navbar = ({ ping }) => {
 
   useEffect(() => {
     isLoggedIn();
+    isOff();
   }, [ping]);
 
   return (
@@ -79,44 +104,101 @@ const Navbar = ({ ping }) => {
                 </li>
               )} */}
             </ul>
-
+            {!isAdmin && !isManufacturer&&(
+              <>
+            <div className="navsearch">
+              <div className="">
+                <div>
+                  <div className="btnt rounded-pill ">
+                    <Input
+                      icon="search"
+                      placeholder="Search..."
+                      onChange={handleSearch}
+                      value={searchInput}
+                    />
+                  </div>
+                </div>
+                <CardGroup
+                  className="navcardres "
+                  itemsPerRow={5}
+                  style={{ marginTop: 20 }}
+                >
+                  {searchInput &&
+                    filteredResults &&
+                    filteredResults.map((item) => {
+                      return (
+                        <Card>
+                          <Link to={`/dev/${item._id}`} state={{ dev: item }}>
+                            <CardHeader>{item.prjectname}</CardHeader>
+                          </Link>
+                        </Card>
+                      );
+                    })}
+                </CardGroup>
+                {/* <a className="btn btn-light" href="#about">
+                    Get Started
+                  </a> */}
+              </div>
+            </div>
+            </>)}
+            {!isAdmin && !isManufacturer&& (
+              <>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className={`nav-link ${isActive("/") ? "active" : ""}`} href="/">
+                <a
+                  className={`nav-link ${isActive("/") ? "active" : ""}`}
+                  href="/"
+                >
                   HOME
                 </a>
               </li>
             </ul>
-            {!isAdmin && (
+            
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a
+                    className={`nav-link ${
+                      isActive("/market") ? "active" : ""
+                    }`}
+                    href="/market"
+                  >
+                    EXPLORE
+                  </a>
+                </li>
+              </ul>
+            
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className={`nav-link ${isActive("/market") ? "active" : ""}`} href="/market">
-                  EXPLORE
-                </a>
-              </li>
-            </ul>
-            )}
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className={`nav-link ${isActive("/about") ? "active" : ""}`} href="/about">
+                <a
+                  className={`nav-link ${isActive("/description") ? "active" : ""}`}
+                  href="/description"
+                >
                   ABOUT
                 </a>
               </li>
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className={`nav-link ${isActive("/contact") ? "active" : ""}`} href="/contact">
+                <a
+                  className={`nav-link ${isActive("/contact") ? "active" : ""}`}
+                  href="/contact"
+                >
                   CONTACT
                 </a>
               </li>
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className={`nav-link ${isActive("/jornal") ? "active" : ""}`} href="/jornal">
+                <a
+                  className={`nav-link ${isActive("/allblog") ? "active" : ""}`}
+                  href="/allblog"
+                >
                   JORNALS
                 </a>
               </li>
             </ul>
+            </>
+            )}
             {/* {isSeller && !isAdmin && token && (
               <div>
                 <>
@@ -249,33 +331,59 @@ const Navbar = ({ ping }) => {
                           </a>
                         </li>
                         <li>
-                        <a className="dropdown-item" href="/Create">
+                          <a className="dropdown-item" href="/Create">
+                            <i className="fa fa-pencil" aria-hidden="true" />
+                            &nbsp; Create
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="/blog">
+                            <i className="fa fa-pencil" aria-hidden="true" />
+                            &nbsp; Blogs
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="/adblogs">
+                            <i className="fa fa-file" aria-hidden="true" />
+                            &nbsp; Blogs
+                          </a>
+                        </li>
+                      </>
+                    )}
+                    {isManufacturer && !isAdmin && (
+                      <>
+                        <li>
+                          <a className="dropdown-item" href="/manuprof">
+                            <i className="fas fa-user" aria-hidden="true" />
+                            &nbsp; My Profile
+                          </a>
+                        </li>
+                      </>
+                    )}
+                    
+                    {!isSeller && token &&(
+                      <>
+                        <a className="dropdown-item" href="/wish">
+                          <i className="fa fa-heart" aria-hidden="true"></i>
+                          &nbsp; Wishlist
+                        </a>
+                        </>
+                    )}
+                        {isSeller && (
+                          <>
+                        <a className="dropdown-item" href="/clt">
+                          <i className="fa fa-archive" aria-hidden="true" />
+                          &nbsp; My Offers
+                        </a>
+                        <li>
+                          <a className="dropdown-item" href="/Create">
                             <i className="fa fa-pencil" aria-hidden="true" />
                             &nbsp; Create
                           </a>
                         </li>
                       </>
                     )}
-
-                    {isSeller && (
-                      <>
-                       <a className="dropdown-item" href="/wish">
-                    <i className="fa fa-heart" aria-hidden="true"></i>
-                    &nbsp; Wishlist
-                  </a>
-                        <a className="dropdown-item" href="/clt">
-                          <i className="fa fa-archive" aria-hidden="true" />
-                          &nbsp; My Offers
-                        </a>
-                        <li>
-                    <a className="dropdown-item" href="/Create">
-                    <i className="fa fa-pencil" aria-hidden="true" />
-                    &nbsp; Create
-                    </a>
-                  </li>
-                      </>
-                    )}
-                    {!isAdmin && (
+                    {!isAdmin && !isManufacturer && (
                       <li>
                         <a className="dropdown-item" href="/Profil">
                           <i className="fa fa-cog" aria-hidden="true" />
@@ -283,7 +391,6 @@ const Navbar = ({ ping }) => {
                         </a>
                       </li>
                     )}
-
                     <li>
                       <a
                         className="dropdown-item"

@@ -56,19 +56,20 @@ const Wishlist = () => {
       })
     );
   }, [user._id, offers]);
-  console.log(useroffers);
   console.log(userwishes);
+  console.log(user);
+  console.log(wish);
   return (
     <div className="">
       <div className="main">
         <div className="container wishlist1  row d-flex ">
           <h1 className="cart-heading ">My WishList</h1>
-          {wish.length === 0 ? (
+          {userwishes.length === 0 ? (
             <div className="empty-cart">
               <p>Your cart is empty.</p>
             </div>
           ) : (
-            wish.map((el) => (
+            userwishes.map((el) => (
               <div className="cart-item" key={el._id}>
                 <div className="item-carousel">
                   {el.images && el.images.length > 0 && (

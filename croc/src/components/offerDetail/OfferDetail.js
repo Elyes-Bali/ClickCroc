@@ -22,8 +22,12 @@ const OfferDetail = ({ ping, setPing }) => {
   const [test, setTest] = useState(false);
   const token = localStorage.getItem("token");
   const [userRating, setUserRating] = useState(0);
+  const [avgrate, setAvgrate] = useState({
+    totalRates:1
+  });
+
   const [rates, setRates] = useState({
-    rate: "",
+    rate: 0.01,
     userId: "",
   });
   const [create, setCreate] = useState({
@@ -100,11 +104,27 @@ const OfferDetail = ({ ping, setPing }) => {
       });
     }
   };
+  let totalRate = 0;
+
+  // Iterate over each rating and sum up the rates
+  dev.rating.forEach(rating => {
+    totalRate += rating.rate;
+  
+  });
+  
+  // Calculate the average rate
+  const averageRate = totalRate / dev.rating.length;
+  
+  
   const handleUpdate = async () => {
     // Apply rate
     ApplyRate(dev._id, rates);
+    // dev.totalRates=averageRate;
+
+    // await hundelUpdate();
     // Reset userRating
     setUserRating(0);
+
     // Update ping state
     setPing(!ping);
     // Show success message
@@ -116,7 +136,6 @@ const OfferDetail = ({ ping, setPing }) => {
       timer: 1500,
     });
   };
-
   // Function to handle star rating click
   const handleRatingClick = async (rating) => {
     // Update userRating state immediately
@@ -124,12 +143,22 @@ const OfferDetail = ({ ping, setPing }) => {
     // Update rates state with userRating
     setRates((prevRates) => ({ ...prevRates, rate: rating }));
   };
+  const hundelUpdate = async () => {
+    dev.totalRates=averageRate;
+    const config = { headers: { "Content-Type": "application/json" } };
+    const res = await axios.put(`/api/offer/edite/${dev._id}`, dev, config);
+  };
+  console.log("Total rate:", totalRate);
+  console.log("Average rate:", averageRate);
+  console.log(dev)
+  console.log(avgrate.totalRates)
 
   useEffect(() => {
     isOffer();
     isUser();
     isUsers();
     isComment();
+    
     if (!hasScrolledRef.current) {
       window.scrollTo(0, 0);
       hasScrolledRef.current = true;
@@ -141,6 +170,7 @@ const OfferDetail = ({ ping, setPing }) => {
 
   //   isComment();
   // }, [user]);
+
 
   return (
     <div>
@@ -321,8 +351,10 @@ const OfferDetail = ({ ping, setPing }) => {
           </>
         </div>
       </section>
-
-      <Footer />
+      <div className="detailfooter"
+      >
+        <Footer />
+      </div>
     </div>
   );
 };
