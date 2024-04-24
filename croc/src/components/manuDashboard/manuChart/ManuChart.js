@@ -55,7 +55,7 @@ console.log(allsel)
 
   const filteredOffers = offers.filter((offer) => {
     const matches = allsel.some((sel) => {
-      const match = sel._id === offer.createdbyId && user.company === sel.company;
+      const match = sel._id === offer.createdbyId && user?.company?.toLowerCase() === offer?.brand?.toLowerCase();
       // console.log("Offer:", offer, "Sel:", sel, "Match:", match);
       return match;
     });

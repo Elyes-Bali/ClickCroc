@@ -65,7 +65,7 @@ const SideBar = () => {
               </a>
             </li> */}
                 <li className="list-item">
-                  <a href="/alluser" className="nav-link">
+                  <a href="/allAdProducts" className="nav-link">
                     <i class="fa fa-product-hunt" aria-hidden="true" /> &nbsp;
                     <span className="list-item-text">Products</span>
                   </a>

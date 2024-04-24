@@ -45,6 +45,7 @@ import Description from "./components/description/Description";
 import Blog from "./components/Blog/Blog";
 import BlogPage from "./components/Blog/blogpage/BlogPage";
 import AdminBlogs from "./components/dashboard/adminBlogs/AdminBlogs";
+import AdminProducts from "./components/dashboard/adminProducts/AdminProducts";
 
 
 
@@ -88,10 +89,12 @@ function App() {
         <Route path="/messdb" element={<Messg />} />
         <Route path="/chart" element={<Chartes/>} />
         <Route path="/adof" element={<AdminOffers/>} />
-        <Route path="/alluser" element={<ChartDb/>} />
+        <Route path="/allAdProducts" element={<ChartDb/>} />
         <Route path="/alloff" element={<Chartusers/>} />
         <Route path="/allclt" element={<ClienDB/>} />
         <Route path="/adblogs" element={<AdminBlogs/>} />
+        <Route path="/adminProducts" element={<AdminProducts />} />
+
         
         <Route path="/adprof" element={<AdminProfile ping={ping} setPing={setPing}/>} />
         </Route>

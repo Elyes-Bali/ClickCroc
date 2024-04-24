@@ -13,7 +13,7 @@ const Navbar = ({ ping }) => {
   const isAdmin = localStorage.getItem("isAdmin");
   const isSeller = localStorage.getItem("isSeller");
   const isManufacturer = localStorage.getItem("isManufacturer");
-
+  const isClient = localStorage.getItem("isClient");
   const location = useLocation();
   const [listoff, setListOff] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
@@ -43,6 +43,7 @@ const Navbar = ({ ping }) => {
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("isSeller");
     localStorage.removeItem("isManufacturer");
+    localStorage.removeItem("isClient");
   };
 
   const isLoggedIn = async () => {
@@ -104,100 +105,110 @@ const Navbar = ({ ping }) => {
                 </li>
               )} */}
             </ul>
-            {!isAdmin && !isManufacturer&&(
+            {!isAdmin && !isManufacturer && (
               <>
-            <div className="navsearch">
-              <div className="">
-                <div>
-                  <div className="btnt rounded-pill ">
-                    <Input
-                      icon="search"
-                      placeholder="Search..."
-                      onChange={handleSearch}
-                      value={searchInput}
-                    />
-                  </div>
-                </div>
-                <CardGroup
-                  className="navcardres "
-                  itemsPerRow={5}
-                  style={{ marginTop: 20 }}
-                >
-                  {searchInput &&
-                    filteredResults &&
-                    filteredResults.map((item) => {
-                      return (
-                        <Card>
-                          <Link to={`/dev/${item._id}`} state={{ dev: item }}>
-                            <CardHeader>{item.prjectname}</CardHeader>
-                          </Link>
-                        </Card>
-                      );
-                    })}
-                </CardGroup>
-                {/* <a className="btn btn-light" href="#about">
+                <div className="navsearch">
+                  <div className="">
+                    <div>
+                      <div className="btnt rounded-pill ">
+                        <Input
+                          icon="search"
+                          placeholder="Search..."
+                          onChange={handleSearch}
+                          value={searchInput}
+                        />
+                      </div>
+                    </div>
+                    <CardGroup
+                      className="navcardres "
+                      itemsPerRow={5}
+                      style={{ marginTop: 20 }}
+                    >
+                      {searchInput &&
+                        filteredResults &&
+                        filteredResults.map((item) => {
+                          return (
+                            <Card>
+                              <Link
+                                to={`/dev/${item._id}`}
+                                state={{ dev: item }}
+                              >
+                                <CardHeader>{item.prjectname}</CardHeader>
+                              </Link>
+                            </Card>
+                          );
+                        })}
+                    </CardGroup>
+                    {/* <a className="btn btn-light" href="#about">
                     Get Started
                   </a> */}
-              </div>
-            </div>
-            </>)}
-            {!isAdmin && !isManufacturer&& (
+                  </div>
+                </div>
+              </>
+            )}
+            {!isAdmin && !isManufacturer && (
               <>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${isActive("/") ? "active" : ""}`}
-                  href="/"
-                >
-                  HOME
-                </a>
-              </li>
-            </ul>
-            
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a
-                    className={`nav-link ${
-                      isActive("/market") ? "active" : ""
-                    }`}
-                    href="/market"
-                  >
-                    EXPLORE
-                  </a>
-                </li>
-              </ul>
-            
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${isActive("/description") ? "active" : ""}`}
-                  href="/description"
-                >
-                  ABOUT
-                </a>
-              </li>
-            </ul>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${isActive("/contact") ? "active" : ""}`}
-                  href="/contact"
-                >
-                  CONTACT
-                </a>
-              </li>
-            </ul>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${isActive("/allblog") ? "active" : ""}`}
-                  href="/allblog"
-                >
-                  JORNALS
-                </a>
-              </li>
-            </ul>
-            </>
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a
+                      className={`nav-link ${isActive("/") ? "active" : ""}`}
+                      href="/"
+                    >
+                      HOME
+                    </a>
+                  </li>
+                </ul>
+
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a
+                      className={`nav-link ${
+                        isActive("/market") ? "active" : ""
+                      }`}
+                      href="/market"
+                    >
+                      EXPLORE
+                    </a>
+                  </li>
+                </ul>
+
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a
+                      className={`nav-link ${
+                        isActive("/description") ? "active" : ""
+                      }`}
+                      href="/description"
+                    >
+                      ABOUT
+                    </a>
+                  </li>
+                </ul>
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a
+                      className={`nav-link ${
+                        isActive("/contact") ? "active" : ""
+                      }`}
+                      href="/contact"
+                    >
+                      CONTACT
+                    </a>
+                  </li>
+                </ul>
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a
+                      className={`nav-link ${
+                        isActive("/allblog") ? "active" : ""
+                      }`}
+                      href="/allblog"
+                    >
+                      JORNALS
+                    </a>
+                  </li>
+                </ul>
+              </>
             )}
             {/* {isSeller && !isAdmin && token && (
               <div>
@@ -360,17 +371,17 @@ const Navbar = ({ ping }) => {
                         </li>
                       </>
                     )}
-                    
-                    {!isSeller && token &&(
+
+                    {isClient && token && (
                       <>
                         <a className="dropdown-item" href="/wish">
                           <i className="fa fa-heart" aria-hidden="true"></i>
                           &nbsp; Wishlist
                         </a>
-                        </>
+                      </>
                     )}
-                        {isSeller && (
-                          <>
+                    {isSeller && (
+                      <>
                         <a className="dropdown-item" href="/clt">
                           <i className="fa fa-archive" aria-hidden="true" />
                           &nbsp; My Offers

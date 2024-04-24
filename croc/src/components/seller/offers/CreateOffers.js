@@ -146,7 +146,7 @@ const CreateOffers = () => {
             </li>
               
               <li className="list-item">
-              <a href="/alluser" className="nav-link">
+              <a href="/allAdProducts" className="nav-link">
               <i class="fa fa-product-hunt" aria-hidden="true"/> &nbsp;
                 <span className="list-item-text">Products</span>
               </a>
@@ -209,7 +209,7 @@ const CreateOffers = () => {
             <Form.Control
               className="form-control"
               type="text"
-              placeholder="What type is it?"
+              placeholder="What Family is it?"
               value={create?.duree}
               onChange={(e) =>
                 setCreate({ ...create, duree: e.target.value })
@@ -220,7 +220,7 @@ const CreateOffers = () => {
             <Form.Control
               className="form-control"
               type="text"
-              placeholder="What type is it?"
+              placeholder="Product maker ?"
               value={create?.prdmake}
               onChange={(e) =>
                 setCreate({ ...create, prdmake: e.target.value })
@@ -231,7 +231,7 @@ const CreateOffers = () => {
             <Form.Control
               className="form-control"
               type="text"
-              placeholder="What type is it?"
+              placeholder="Gamme ?"
               value={create?.gamme}
               onChange={(e) =>
                 setCreate({ ...create, gamme: e.target.value })

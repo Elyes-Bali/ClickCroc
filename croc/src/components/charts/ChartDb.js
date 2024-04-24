@@ -13,6 +13,7 @@ import { Line } from "react-chartjs-2";
 import "./CharDb.css";
 import SideBar from "../dashboard/SideBar";
 import { GetAllOff } from "../../apis/OfferApi";
+import { Button } from "react-bootstrap";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -43,16 +44,16 @@ const ChartDb = () => {
       },
       title: {
         display: true,
-        text: "Data",
+        text: "All Products",
       },
     },
   };
 
   const data = {
-    labels: chart?.map((x) => x.prjectname.substring(0,11)),
+    labels: chart?.map((x) => x.prjectname.substring(0, 11)),
     datasets: [
       {
-        label: `${chart?.length} Offers Available`,
+        label: `${chart?.length} Products Available`,
         data: chart.map((x) => x.budget),
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -74,30 +75,32 @@ const ChartDb = () => {
       },
     ],
   };
-console.log(chart)
+  console.log(chart);
   return (
     <div className="mdd">
-     
       <div className="ctn">
-      <div className="content-wrapper cadre">
-        <div className="card cdr w3-hover-shadow">
-          <div className="card-header">
-            <h5 className="card-title">
-                Offers and Budgets
-            </h5>
-            <div className="card-tools">
-              
+       
+        <div className="content-wrapper cadre">
+          <div className="card cdr w3-hover-shadow ">
+          <Button
+          className="btn btn-success me-4 rounded-pill px-4 py-2 mt-4"
+          href="/adminProducts"
+        >
+          View Products
+        </Button>
+            <div className="card-header">
+              <h5 className="card-title">Products and Prices</h5>
+
+              <div className="card-tools"></div>
             </div>
-          </div>
-          <div className="card-body">
-          <div className="cht">
-            <Line data={data}  options={options} />
-          </div>
+            <div className="card-body">
+              <div className="cht">
+                <Line data={data} options={options} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-      
     </div>
   );
 };

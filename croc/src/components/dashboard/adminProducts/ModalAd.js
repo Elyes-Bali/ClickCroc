@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import axios from "axios";
-import "./ClientProfile.css"
 
-const ModalCl = ({ offrr, keey }) => {
-  const [offer, setOffer] = useState({});
+const ModalAd = ({ offrr, keey }) => {
+    const [offer, setOffer] = useState({});
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -54,7 +53,6 @@ const ModalCl = ({ offrr, keey }) => {
     setOffer(offrr);
     setOffer({ ...offrr, date: Date.now() });
   }, []);
-
   return (
     <div key={keey}>
     <div className="buttom">
@@ -107,8 +105,7 @@ const ModalCl = ({ offrr, keey }) => {
             onChange={(e) => setOffer({ ...offer, colors: e.target.value })}
           />
         </Form.Group>
-        <br />
-
+        <br/>
         <Form.Group>
           <Form.Control
             type="text"
@@ -117,7 +114,6 @@ const ModalCl = ({ offrr, keey }) => {
             onChange={(e) => setOffer({ ...offer, prdmake: e.target.value })}
           />
         </Form.Group>
-       
         <br />
         <Form.Group>
           <Form.Control
@@ -156,8 +152,7 @@ const ModalCl = ({ offrr, keey }) => {
       </Modal.Footer>
     </Modal>
   </div>
-  
-  );
-};
+  )
+}
 
-export default ModalCl;
+export default ModalAd
