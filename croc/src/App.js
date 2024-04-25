@@ -60,11 +60,9 @@ function App() {
       <Navbar ping={ping}/>
      
       {/* <Header/> */}
-    {token && isAdmin &&
-      <SideBar />}
+    {/* {token && isAdmin &&
+      <SideBar />} */}
 
-{token && isManufacturer && 
-      <SideBar />}
      
       <Routes>
         <Route path="/" element={<Home />} />
@@ -92,7 +90,6 @@ function App() {
         <Route path="/allAdProducts" element={<ChartDb/>} />
         <Route path="/alloff" element={<Chartusers/>} />
         <Route path="/allclt" element={<ClienDB/>} />
-        <Route path="/adblogs" element={<AdminBlogs/>} />
         <Route path="/adminProducts" element={<AdminProducts />} />
 
         
@@ -110,6 +107,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/description" element={<Description />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/adblogs" element={<AdminBlogs/>} />
+
         <Route path="/allblog" element={<BlogPage />} />
    
 

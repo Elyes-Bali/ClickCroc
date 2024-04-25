@@ -4,6 +4,10 @@ import {
   saleImgOne,
   saleImgTwo,
   saleImgThree,
+  saling1,
+  saling2,
+  saling3,
+  saling4
 } from "../../../assets/images/index";
 import Image from "../../designLayouts/Image";
 import ShopNow from "../../designLayouts/buttons/ShopNow";
@@ -17,13 +21,13 @@ const Sale = () => {
           <div className="row">
             <div className="col-md-6">
             <div className="aspect-w-4 aspect-h-3 w-full mb-4">
-          <Image className="h-full w-full object-cover" imgSrc={saleImgOne} />
+          <Image className="h-full w-full object-cover" imgSrc={saling4} />
         </div>
             </div>
             <div className="col-md-6">
             <div className="mx-8">
             <h1 className="title1 md:text-5xl lg:text-5xl mb-6"><b>
-              Imprimante sales
+              Products sales
               </b>
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-6">
@@ -31,7 +35,7 @@ const Sale = () => {
               <span className="text-4xl md:text-5xl lg:text-5xl font-bold">
                 30%
               </span>{" "}
-              sales for all impriamnte{" "}
+              sales for all Products{" "}
             </p>
             <div className="mb-8">
               <a className="btn btn-dark " href="/market">Explore</a>
@@ -50,7 +54,7 @@ const Sale = () => {
                 <Link to="/market">
                   <Image
                     className="h-full w-full object-cover"
-                    imgSrc={saleImgThree}
+                    imgSrc={saling3}
                   />
                 </Link>
               </div>
@@ -61,7 +65,7 @@ const Sale = () => {
                 <Link to="/market">
                   <Image
                     className="h-full w-full object-cover"
-                    imgSrc={saleImgTwo}
+                    imgSrc={saling2}
                   />
                 </Link>
               </div>

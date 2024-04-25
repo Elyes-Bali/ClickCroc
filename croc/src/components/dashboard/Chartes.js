@@ -7,6 +7,7 @@ import { GetAllClt, GetAllSel, GetAllUsers } from "../../apis/UserApi";
 import "./Dash.css"
 import { Doughnut, Line } from "react-chartjs-2";
 import { GetAllOff } from "../../apis/OfferApi";
+import SideBar from "./SideBar";
 
 
 ChartJs.register(Tooltip, Title, ArcElement,CategoryScale,
@@ -206,6 +207,7 @@ const Chartes = () => {
   return (
     
       <div className="scrumban offset-md-2 col-md-10">
+        <SideBar />
         <div className="card col-md-4 w-hover-shadow">
           <div className="card-header">
              <h5 className="card-title">Users</h5>

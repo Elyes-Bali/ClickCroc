@@ -11,10 +11,11 @@ const Footer = () => {
           
           <div className="row">
           <hr/>
-            <div className="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0 mt-4">
+            <div className="col-lg-3 col-md-6 col-sm-6 mb-4 mb-lg-0 mt-2">
               <h4 className="footer_title"><b>More about C&C Shop</b></h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in.
+              “Clic & Croc” invites you to explore a world of flavors and discoveries.
+
               </p>
               <ul className="list-unstyled d-flex mt-3">
                 <li className="ms-3">

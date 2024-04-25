@@ -3,11 +3,18 @@ import logoLight from "./logoLight.png";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
 import bannerImgThree from "./banner/bannerImgThree.webp";
+import aziza1 from "./banner/aziza1.webp";
+import aziza2 from "./banner/aziza2.webp";
+import aziza3 from "./banner/aziza3.webp";
 import test from "./banner/test.webp";
 import pcgamer1 from "./banner/pcgamer1.webp"
 import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
+import saling1 from "./sale/saling1.webp";
+import saling2 from "./sale/saling2.webp";
+import saling3 from "./sale/saling3.webp";
+import saling4 from "./sale/saling4.webp";
 // ============== Products Start here ====================
 import pdf1 from "../pdf/pdf1.pdf";
 // New Arrivals
@@ -83,9 +90,16 @@ export {
   bannerImgOne,
   bannerImgTwo,
   bannerImgThree,
+  aziza1,
+  aziza2,
+  aziza3,
   saleImgOne,
   saleImgTwo,
   saleImgThree,
+  saling1,
+  saling2,
+  saling3,
+  saling4,
   test,
   pcgamer1,
   // ===================== Products start here ============

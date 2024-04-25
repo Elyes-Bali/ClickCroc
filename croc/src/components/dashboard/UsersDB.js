@@ -5,6 +5,7 @@ import "./Dash.css";
 import { hundelUpdate } from "../../apis/UserApi";
 import axios from "axios";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import SideBar from "./SideBar";
 const ClienDB = () => {
   const [allusers, setAllusers] = useState([]);
 
@@ -37,6 +38,7 @@ const ClienDB = () => {
 
   return (
     <div className="mdd">
+      <SideBar/>
       <div className="ctn w-100 ">
         <div className="content-wrapper cadre">
           <div className="card cdr w3-hover-shadow">

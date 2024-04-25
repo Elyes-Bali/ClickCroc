@@ -4,6 +4,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { CurrentUser } from "../../../apis/UserApi";
+import SideBar from "../../dashboard/SideBar";
 
 
 const ManuProfile = ({ ping, setPing }) => {
@@ -100,7 +101,7 @@ const ManuProfile = ({ ping, setPing }) => {
     
       return (
         <div className="mdd" >
-        
+        <SideBar/>
         <section className="ml-5 ">
        
           <div className="container  my-5 py-5">

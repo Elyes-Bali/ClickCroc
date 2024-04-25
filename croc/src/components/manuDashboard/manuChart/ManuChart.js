@@ -3,6 +3,7 @@ import { Chart as ChartJS, LineElement } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { GetAllOff } from "../../../apis/OfferApi";
 import { CurrentUser, GetAllSel } from "../../../apis/UserApi";
+import SideBar from "../../dashboard/SideBar";
 
 ChartJS.register(LineElement);
 
@@ -107,6 +108,7 @@ console.log(allsel)
 
   return (
     <div className="mdd">
+        <SideBar/>
       <div className="">
         <div className="content-wrapper cadre mt-4">
           <div className="card cdr w3-hover-shadow">

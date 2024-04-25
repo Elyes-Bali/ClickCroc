@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { CurrentUser } from "../../../apis/UserApi";
 import "./AdminProfile.css"
+import SideBar from "../SideBar";
 const AdminProfile = ({ ping, setPing }) => {
   const [user, setUser] = useState({
     username: "",
@@ -99,7 +100,7 @@ const AdminProfile = ({ ping, setPing }) => {
 
   return (
     <div className="mdd" >
-    
+    <SideBar />
     <section className="ml-5 ">
    
       <div className="container  my-5 py-5">

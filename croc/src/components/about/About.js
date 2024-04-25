@@ -9,7 +9,7 @@ const About = () => {
         <div className="container my-5 py-5">
           <div className="row">
             <div className="col-md-6">
-              <img src="/images/gamer.jpg" alt="About" className="w-75 mt-5" />
+              <img src="/images/warda.jpg" alt="About" className="w-75 mt-5" />
             </div>
             <div className="col-md-6">
               <br />

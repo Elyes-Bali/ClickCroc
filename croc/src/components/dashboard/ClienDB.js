@@ -60,6 +60,7 @@ const ClienDB = () => {
   return (
     <div>
       <div className="mdd">
+      <SideBar />
         <div className="content-wrapper ">
           <div className="card cdr w3-hover-shadow">
             <div className="card-header">

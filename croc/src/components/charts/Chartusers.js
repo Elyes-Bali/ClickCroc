@@ -7,6 +7,7 @@ import { Bar  } from "react-chartjs-2";
 import "./CharDb.css";
 
 import { GetAllClt, GetAllManu, GetAllSel, GetAllUsers } from "../../apis/UserApi";
+import SideBar from "../dashboard/SideBar";
 
 ChartJS.register(
     BarElement,
@@ -138,7 +139,7 @@ isManu();
 
   return (
     <div className="mdd">
-      
+      <SideBar />
       <div className="ctn">
       <div className="content-wrapper cadre">
         <div className="card cdr w3-hover-shadow">

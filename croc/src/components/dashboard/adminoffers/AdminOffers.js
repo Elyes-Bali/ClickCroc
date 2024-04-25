@@ -3,6 +3,7 @@ import "./AdminOffers.css"
 import { CurrentUser } from "../../../apis/UserApi";
 import { GetAllOff } from "../../../apis/OfferApi";
 import Cltoff from "../../client/Cltoff";
+import SideBar from "../SideBar";
 
 const Loader = () => {
     return (
@@ -49,6 +50,7 @@ const AdminOffers = () => {
 
   return (
     <div className="mt-5">
+      <SideBar />
       <section id="">
         <div className="">
           <div className="search-container adofs col-6 col-sm-2 col-md-7">

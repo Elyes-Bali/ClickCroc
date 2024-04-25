@@ -4,6 +4,7 @@ import './Dash.css'
 import { Button, Table } from "react-bootstrap";
 import { GetAllMess } from "../../apis/MessageApi";
 import { Removemess } from "../../apis/MessageApi";
+import SideBar from "./SideBar";
 
 
 const Messg = () => {
@@ -22,7 +23,7 @@ const isMessages = async () => {
 
   return (
     <div className="mdd">
-       
+       <SideBar />
          <div className=" w-100">
       <div className="content-wrapper cadre">
         <div className="card cdr w3-hover-shadow">

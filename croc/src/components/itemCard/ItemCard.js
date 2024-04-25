@@ -9,7 +9,9 @@ import Swal from "sweetalert2";
 const ItemCard = ({dev,use}) => {
   const [user, setUser] = useState({});
   const isSeller = localStorage.getItem("isSeller");
+  const isAdmin = localStorage.getItem("isAdmin");
   const token = localStorage.getItem("token");
+  const isManufacturer = localStorage.getItem("isManufacturer");
 
   const isUser = async () => {
     const AllUser = await CurrentUser();
@@ -114,7 +116,7 @@ const ItemCard = ({dev,use}) => {
           <Link to={`/dev/${dev._id}`} state={{ dev: dev }}>
             <a className="info-btn">View Details <i class="fa fa-chevron-right ml-2" aria-hidden="true"/></a><hr/>
           </Link>
-          {!isSeller && token &&
+          {!isSeller && !isAdmin &&!isManufacturer && token &&
           <>
           <a className="contact-btn" onClick={hundelUpdate1}>Wish List <i class="fa fa-heart-o" aria-hidden="true"/></a><hr/>
           </>

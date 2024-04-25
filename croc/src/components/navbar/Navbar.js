@@ -105,7 +105,7 @@ const Navbar = ({ ping }) => {
                 </li>
               )} */}
             </ul>
-            {!isAdmin && !isManufacturer && (
+          
               <>
                 <div className="navsearch">
                   <div className="">
@@ -145,8 +145,8 @@ const Navbar = ({ ping }) => {
                   </div>
                 </div>
               </>
-            )}
-            {!isAdmin && !isManufacturer && (
+         
+            
               <>
                 <ul className="navbar-nav">
                   <li className="nav-item">
@@ -204,12 +204,12 @@ const Navbar = ({ ping }) => {
                       }`}
                       href="/allblog"
                     >
-                      JORNALS
+                      BLOGS
                     </a>
                   </li>
                 </ul>
               </>
-            )}
+           
             {/* {isSeller && !isAdmin && token && (
               <div>
                 <>
@@ -338,7 +338,7 @@ const Navbar = ({ ping }) => {
                         <li>
                           <a className="dropdown-item" href="/adof">
                             <i className="fa fa-database" aria-hidden="true" />
-                            &nbsp; My Offers
+                            &nbsp; My Products
                           </a>
                         </li>
                         <li>
@@ -347,12 +347,7 @@ const Navbar = ({ ping }) => {
                             &nbsp; Create
                           </a>
                         </li>
-                        <li>
-                          <a className="dropdown-item" href="/blog">
-                            <i className="fa fa-pencil" aria-hidden="true" />
-                            &nbsp; Blogs
-                          </a>
-                        </li>
+                       
                         <li>
                           <a className="dropdown-item" href="/adblogs">
                             <i className="fa fa-file" aria-hidden="true" />
@@ -384,12 +379,24 @@ const Navbar = ({ ping }) => {
                       <>
                         <a className="dropdown-item" href="/clt">
                           <i className="fa fa-archive" aria-hidden="true" />
-                          &nbsp; My Offers
+                          &nbsp; My Products
                         </a>
                         <li>
                           <a className="dropdown-item" href="/Create">
                             <i className="fa fa-pencil" aria-hidden="true" />
                             &nbsp; Create
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="/blog">
+                            <i className="fa fa-pencil" aria-hidden="true" />
+                            &nbsp; Blogs
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" href="/adblogs">
+                            <i className="fa fa-file" aria-hidden="true" />
+                            &nbsp; Blogs
                           </a>
                         </li>
                       </>

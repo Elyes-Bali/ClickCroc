@@ -4,6 +4,7 @@ import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { GetAllUsers } from "../../apis/UserApi";
 import "./Dash.css";
 import { GetAllOff } from "../../apis/OfferApi";
+import SideBar from "./SideBar";
 
 const Dashboard = () => {
   const [allusers, setAllusers] = useState([]);
@@ -37,6 +38,7 @@ const Dashboard = () => {
   console.log(allusers);
   return (
     <div className="mdd ">
+      <SideBar />
       <div className="content-wrapper ">
         <section className="content pt-4">
           <div className="container-fluid">

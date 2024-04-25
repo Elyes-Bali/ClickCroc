@@ -40,7 +40,9 @@ const Home = () => {
       <div className="div3 col-md-6"></div>
     </div> */}
     <div className="w-full mx-auto mt-5">
+      <div className="mt-5">
       <Banner/>
+      </div>
       <BannerBottom/>
     </div>
     <Sale/>

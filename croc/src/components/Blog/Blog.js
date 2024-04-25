@@ -138,7 +138,7 @@ const Blog = () => {
       <section id="Create">
         <div className="formgroup  offset-sm-3 text-center">
           <br />
-          <div className="container back shadow my-5 py-5">
+          <div className="container back  my-5 py-5">
             <Form.Group as={Col} controlId="offer">
             <div className="row">
               <b className="d-flex justify-content-center">

@@ -102,7 +102,7 @@ const ModalCl = ({ offrr, keey }) => {
         <Form.Group>
           <Form.Control
             type="text"
-            placeholder="Color"
+            placeholder="Categorie"
             value={offer?.colors}
             onChange={(e) => setOffer({ ...offer, colors: e.target.value })}
           />

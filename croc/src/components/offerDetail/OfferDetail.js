@@ -219,7 +219,7 @@ const OfferDetail = ({ ping, setPing }) => {
                 <b>Product maker:</b> {dev?.gamme}
               </h3>
               <h3 className="fs-5 mb-2">
-                <b>Color:</b> {dev?.colors}
+                <b>Categorie:</b> {dev?.colors}
               </h3>
               <h3 className="fs-5 mb-2">
                 <b>Brand:</b> {dev?.brand}

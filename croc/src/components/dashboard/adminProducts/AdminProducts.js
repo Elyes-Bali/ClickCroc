@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { GetAllOff } from "../../../apis/OfferApi";
 import AdProd from "./adProd";
 import "./AdminProd.css"
+import SideBar from "../SideBar";
 const Loader = () => {
   return (
     <div className="loader-container">
@@ -39,8 +40,9 @@ const AdminProducts = () => {
   
   }, [offer]);
   return (
-    <div className="mt-5 adminprods">
-      <section >
+    <div className="mt-5 ">
+      <SideBar />
+      <section className="adminprods">
         <div className="shadow">
           <div className="search-container">
             <input

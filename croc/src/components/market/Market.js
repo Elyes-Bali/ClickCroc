@@ -59,11 +59,20 @@ const Market = () => {
     }
   };
 
-// const avrageRateHandler=()=>{
-//   let sumRates=0;
-//   const avgRates = listdev.filter((item) => );
-  
-// }
+
+  const handleCategFilter = (e) => {
+    const selectedcateg = e.target.value;
+    if (selectedcateg === "") {
+      setFilteredResults([]);
+    } else {
+      const filteredByBrand = listdev.filter(
+        (item) => item.colors === selectedcateg
+      );
+      setFilteredResults(filteredByBrand);
+    }
+  };
+
+
 
 const calculateAverageRating = (item) => {
   if (!item || !item.rating || !Array.isArray(item.rating) || item.rating.length === 0) {
@@ -221,17 +230,36 @@ console.log(listdev);
                   <b>Shop by Brand</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </p>
-                <label htmlFor="category">Brands:</label>
+                <label htmlFor="category">Brands: &nbsp;</label>
                 <select id="category" onChange={handleBrandFilter}>
                   <option value="">All</option>
                   <option value="Geant">GEANT</option>
                   <option value="Monoprix">MONOPRIX</option>
                   <option value="Carrefour">CARREFOUR</option>
                   <option value="Mg">MG</option>
+                  <option value="Aziza">Aziza</option>
                   {/* Add more options as needed */}
                 </select>
                 <br />
-                <p className="mb-3 mt-3">
+
+                <p className="free mb-3">
+                  <b>Shop by Categories</b>{" "}
+                  <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                </p>
+                <label htmlFor="category">Categories: &nbsp;</label>
+                <select id="category" onChange={handleCategFilter}>
+                  <option value="">All</option>
+                  <option value="Dairy">Dairy</option>
+                  <option value="Beverages">Beverages</option>
+                  <option value="Biscuits & Snacks">Biscuits & Snacks</option>
+                  <option value="Breads & Bakery">Breads & Bakery</option>
+                  <option value="Breakfast & Dairy">Breakfast & Dairy</option>
+                  <option value="Frozen Food">Frozen Food</option>
+                  <option value="Grocery & Staples">Grocery & Staples</option>
+                  {/* Add more options as needed */}
+                </select>
+                <br/>
+                <p className="mb-3 mt-3 free">
                   <b>Sort by Price</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </p>
@@ -245,7 +273,7 @@ console.log(listdev);
                   onChange={handlePriceFilter}
                 />
                 <div>Selected Price Range: {selectedPrice}TND</div>
-                <p className="mb-3 mt-3">
+                <p className="mb-3 mt-3 free">
                   <b>Sort by Rate</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </p>

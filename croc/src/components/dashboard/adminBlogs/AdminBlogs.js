@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { CurrentUser } from "../../../apis/UserApi";
 import { GetAllBlogs } from "../../../apis/BlogApi";
 import AdminCltoff from "./AdminCltoff";
+import SideBar from "../SideBar";
 
 const AdminBlogs = () => {
     const [offer, setOffer] = useState([]);
@@ -47,12 +48,13 @@ const AdminBlogs = () => {
       };
   return (
     <div className="mt-5">
+      <SideBar />
       <section id="">
         <div className="">
           <div className="search-container adofs col-6 col-sm-2 col-md-7">
             <input
               type="text"
-              placeholder="Search By Product Name"
+              placeholder="Search By Blog Name"
               value={searchTerm}
               onChange={handleSearch}
               className="search-input"

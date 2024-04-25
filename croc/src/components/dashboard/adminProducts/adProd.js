@@ -34,7 +34,7 @@ const AdProd = ({ off,key }) => {
         </Card.Text>
         <br />
         <Card.Text>
-          <b>Color: </b>
+          <b>Categorie: </b>
           {off?.colors}
         </Card.Text>
         <br />

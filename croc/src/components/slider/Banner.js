@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import {
   bannerImgOne,
-  bannerImgTwo,
-  bannerImgThree,
-  test,
+  aziza1,
+  aziza2,
+  aziza3,
   pcgamer1,
 } from "../../assets/images";
 import Image from "../designLayouts/Image";
@@ -154,7 +154,7 @@ const Banner = () => {
 
   const slides = [
     {
-      imgSrc: bannerImgOne,
+      imgSrc: aziza1,
       text: "Enhance Your Printing Experience",
       Subtext:
         "Explore our premium printers and consumables for exceptional results",
@@ -162,7 +162,7 @@ const Banner = () => {
       buttonText: "Explore Now",
     },
     {
-      imgSrc: pcgamer1,
+      imgSrc: aziza2,
       text: "Quality Pc Gamer",
       Subtext:
         "Explore the latest in PC gaming technology, hardware, and accessories for an immersive gaming experience.",
@@ -170,7 +170,7 @@ const Banner = () => {
         buttonText: "Explore Now",
     },
     {
-      imgSrc: bannerImgOne,
+      imgSrc: aziza3,
       text: "Efficiency Redefined",
       Subtext:
         "Maximize productivity with our advanced printers and high-quality consumables. ",

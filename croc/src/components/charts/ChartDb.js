@@ -78,6 +78,7 @@ const ChartDb = () => {
   console.log(chart);
   return (
     <div className="mdd">
+      <SideBar />
       <div className="ctn">
        
         <div className="content-wrapper cadre">
