@@ -32,7 +32,7 @@ const CreateOffers = () => {
     brand: "",
     adress: "",
     gamme: "",
-    prdmake: "",
+
     images: [],
   });
 
@@ -97,8 +97,7 @@ const CreateOffers = () => {
       !create.brand ||
       !create.images ||
       !create.adress ||
-      !create.gamme ||
-      !create.prdmake
+      !create.gamme
     ) {
       Swal.fire({
         icon: "error",
@@ -188,7 +187,19 @@ const CreateOffers = () => {
               />
               <br />
               <Form.Label>Price</Form.Label>
-              <NumberInput
+              <div className="input-with-currency">
+                <span className="currency">TND</span>
+                <Form.Control
+                  className="form-control"
+                  type="number"
+                  placeholder="Price"
+                  value={create?.budget}
+                  onChange={(e) =>
+                    setCreate({ ...create, budget: e.target.value })
+                  }
+                />
+              </div>
+              {/* <NumberInput
                 className="rounded-pill"
                 onChange={(valueString) =>
                   setCreate({ ...create, budget: parse(valueString) })
@@ -202,7 +213,7 @@ const CreateOffers = () => {
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
-              </NumberInput>
+              </NumberInput> */}
               <br />
               <Form.Label>Family</Form.Label>
               <Form.Control
@@ -236,7 +247,7 @@ const CreateOffers = () => {
               </div>
 
               <br />
-              <Form.Label>Product maker</Form.Label>
+              {/* <Form.Label>Product maker</Form.Label>
               <Form.Control
                 className="form-control"
                 type="text"
@@ -245,7 +256,7 @@ const CreateOffers = () => {
                 onChange={(e) =>
                   setCreate({ ...create, prdmake: e.target.value })
                 }
-              />
+              /> */}
               <br />
               <Form.Label>Gamme</Form.Label>
               <Form.Control
@@ -271,7 +282,7 @@ const CreateOffers = () => {
               />
               <br />
               <div>
-                <Form.Label>Brand</Form.Label>
+                <Form.Label>Product Maker</Form.Label>
                 <select
                   className="form-control"
                   onChange={(e) =>

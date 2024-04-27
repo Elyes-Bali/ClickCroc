@@ -10,11 +10,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Button } from "react-bootstrap";
 import Comments from "./Comments";
+import { GetAllWishes } from "../../apis/WishApi";
 
 const OfferDetail = ({ ping, setPing }) => {
   const location = useLocation();
   const { dev } = location.state;
   const [offer, setOffer] = useState([]);
+  const [wishes, setWishes] = useState([]);
   const [useroffer, setUseroffer] = useState([]);
   const hasScrolledRef = useRef(false);
   const [user, setUser] = useState({});
@@ -23,7 +25,18 @@ const OfferDetail = ({ ping, setPing }) => {
   const token = localStorage.getItem("token");
   const [userRating, setUserRating] = useState(0);
   const [avgrate, setAvgrate] = useState({
-    totalRates:1
+    totalRates: 1,
+  });
+  const [userwishes, setUserwishes] = useState([]);
+
+  const [wish, setWish] = useState({
+    ownerId: user._id,
+    productId: dev._id,
+    prodname: dev.prjectname,
+    brande: dev.brand,
+    price: dev.budget,
+    images: dev.images,
+    rates: dev.rating,
   });
 
   const [rates, setRates] = useState({
@@ -46,6 +59,11 @@ const OfferDetail = ({ ping, setPing }) => {
   const isUsers = async () => {
     const users = await GetAllUsers();
     setAllUser(users);
+  };
+
+  const isWishes = async () => {
+    const wishing = await GetAllWishes();
+    setWishes(wishing);
   };
 
   const isUser = async () => {
@@ -75,6 +93,26 @@ const OfferDetail = ({ ping, setPing }) => {
   const isComment = async () => {
     const userLg = await GetAllCom();
     setComm(userLg);
+  };
+
+  const handleWish = async () => {
+    //Object DeStructuring
+
+    const config = { headers: { "Content-Type": "application/json" } };
+    try {
+      const res = await axios.post("/api/wish/create", wish, config);
+      setWish({ ...wish, ownerId: user._id });
+      // alert(`${res.data.msg}`);
+    } catch (error) {
+      console.log(error);
+    }
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Added to Your WishList",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   const handleSubmit = async () => {
@@ -107,15 +145,13 @@ const OfferDetail = ({ ping, setPing }) => {
   let totalRate = 0;
 
   // Iterate over each rating and sum up the rates
-  dev.rating.forEach(rating => {
+  dev.rating.forEach((rating) => {
     totalRate += rating.rate;
-  
   });
-  
+
   // Calculate the average rate
   const averageRate = totalRate / dev.rating.length;
-  
-  
+
   const handleUpdate = async () => {
     // Apply rate
     ApplyRate(dev._id, rates);
@@ -144,33 +180,28 @@ const OfferDetail = ({ ping, setPing }) => {
     setRates((prevRates) => ({ ...prevRates, rate: rating }));
   };
   const hundelUpdate = async () => {
-    dev.totalRates=averageRate;
+    dev.totalRates = averageRate;
     const config = { headers: { "Content-Type": "application/json" } };
     const res = await axios.put(`/api/offer/edite/${dev._id}`, dev, config);
   };
-  console.log("Total rate:", totalRate);
-  console.log("Average rate:", averageRate);
-  console.log(dev)
-  console.log(avgrate.totalRates)
 
   useEffect(() => {
     isOffer();
     isUser();
     isUsers();
     isComment();
-    
+    isWishes();
     if (!hasScrolledRef.current) {
       window.scrollTo(0, 0);
       hasScrolledRef.current = true;
     }
     console.log(rates);
   }, [user.length]);
-
+  console.log(wishes);
   // useEffect(() => {
 
   //   isComment();
   // }, [user]);
-
 
   return (
     <div>
@@ -195,12 +226,18 @@ const OfferDetail = ({ ping, setPing }) => {
               </div>
             </div>
             <div className="col-md-6">
-              <br />
-              <br />
+              <a className="contact-btn" onClick={handleWish}>
+                <i class="fa fa-bookmark" aria-hidden="true">
+                  &nbsp; WishList
+                </i>
+              </a>
+              <hr />
+
               <br />
               <br />
               <h3 className="fs-5 mb-2">
                 <b>Product:</b> {dev.prjectname}
+                {dev.ownerId}
               </h3>
               <h3 className="fs-5 mb-2">
                 <b>Type:</b> {dev.duree}
@@ -212,22 +249,21 @@ const OfferDetail = ({ ping, setPing }) => {
               <h3 className="fs-5 mb-2">
                 <b>Date de publication:</b> {dev.date.substring(0, 10)}
               </h3>
+
               <h3 className="fs-5 mb-2">
-                <b>Product maker:</b> {dev?.prdmake}
-              </h3>
-              <h3 className="fs-5 mb-2">
-                <b>Product maker:</b> {dev?.gamme}
+                <b>Gamme:</b> {dev?.gamme}
               </h3>
               <h3 className="fs-5 mb-2">
                 <b>Categorie:</b> {dev?.colors}
               </h3>
               <h3 className="fs-5 mb-2">
-                <b>Brand:</b> {dev?.brand}
+                <b>Product make: </b> {dev?.brand}
               </h3>
               <br />
               <h3 className="fs-5 mb-2">
-                <b>Adress:</b> {dev?.adress}
+                <b>Adress <i class="fa fa-map-marker" aria-hidden="true"></i> :</b> {dev?.adress}
               </h3>
+              <br/>
 
               <hr />
               <p className="lead mb-4">{dev.detail}</p>
@@ -354,8 +390,7 @@ const OfferDetail = ({ ping, setPing }) => {
           </>
         </div>
       </section>
-      <div className="detailfooter"
-      >
+      <div className="detailfooter">
         <Footer />
       </div>
     </div>

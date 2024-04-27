@@ -61,7 +61,7 @@ const Dashboard = () => {
                     <i className="fas fa-database" />
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-text">All Offers</span>
+                    <span className="info-box-text">All Products</span>
                     <span className="info-box-number">{chart?.length}</span>
                   </div>
                 </div>

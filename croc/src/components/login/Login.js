@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "../../components/footer/Footer";
 import "./Login.css";
+import Footer from "../screens/Footer/Footer";
 
 const Login = () => {
   const navigate = useNavigate();

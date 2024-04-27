@@ -47,12 +47,10 @@ const Cltoff = ({ off, devs, key }) => {
         </Card.Text>
         <br />
         <Card.Text>
-          <b>Brand: </b>{off?.brand}
+          <b>Product Maker: </b>{off?.brand}
         </Card.Text>
         <br />
-        <Card.Text>
-          <b>Product Maker: </b>{off?.prdmake}
-        </Card.Text>
+       
         
         <br />
         <b>Details: </b>

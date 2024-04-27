@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Footer from "../../components/footer/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./Checkemail.css"
+import Footer from "../screens/Footer/Footer";
 const PasswordRes = () => {
     const navigate = useNavigate();
 

@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/Home";
 import { Route, Routes } from "react-router-dom";
-import { Product } from "./components/products/Product";
+
 import Advices from "./components/advices/Advices";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
@@ -46,6 +46,9 @@ import Blog from "./components/Blog/Blog";
 import BlogPage from "./components/Blog/blogpage/BlogPage";
 import AdminBlogs from "./components/dashboard/adminBlogs/AdminBlogs";
 import AdminProducts from "./components/dashboard/adminProducts/AdminProducts";
+import SellerProds from "./components/client/sellerProds/SellerProds";
+import Commentsdb from "./components/dashboard/Commentsdb";
+import AllWishesLites from "./components/dashboard/AllWishesLites";
 
 
 
@@ -69,7 +72,7 @@ function App() {
         <Route path="*" element={<Errorpage />} />
         <Route path="/check" element={<Checkemail />} />
         <Route path="/reset/:token" element={<PasswordRes />} />
-        <Route path="/produit" element={<Product   ping={ping} setPing={setPing}/>} />
+     
         <Route element={<PatientRoute />}>
         <Route path="/mychildren" element={<Children ping={ping} setPing={setPing}/>} />
         </Route>
@@ -91,7 +94,8 @@ function App() {
         <Route path="/alloff" element={<Chartusers/>} />
         <Route path="/allclt" element={<ClienDB/>} />
         <Route path="/adminProducts" element={<AdminProducts />} />
-
+        <Route path="/comdb" element={<Commentsdb />} />
+        <Route path="/allwishesad" element={<AllWishesLites />} />
         
         <Route path="/adprof" element={<AdminProfile ping={ping} setPing={setPing}/>} />
         </Route>
@@ -108,6 +112,7 @@ function App() {
         <Route path="/description" element={<Description />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/adblogs" element={<AdminBlogs/>} />
+        <Route path="/selprodata" element={<SellerProds/>} />
 
         <Route path="/allblog" element={<BlogPage />} />
    

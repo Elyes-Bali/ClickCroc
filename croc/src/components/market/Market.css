@@ -104,8 +104,16 @@
     border-radius: 10rem;
     margin-left: -75px;
     z-index: 1;
+  
+  }
+
+  .brander{
+    margin-top: 15% !important;
   }
   
+  .productstitle{
+    margin-top: -5% !important;
+  }
   .search-box {
     max-width: 300px;
     margin: 0 auto;
@@ -215,6 +223,10 @@
   }
 }
 
+.itemcardes{
+  display: flex;
+  justify-content: start !important;
+}
 /* Adjust padding, background color, and other styles as needed */
 
   

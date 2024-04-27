@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 import './Logup.css'
 import { GetAllUsers } from "../../../apis/UserApi";
-import Footer from "../../footer/Footer";
+import Footer from "../../screens/Footer/Footer";
 const Logup = () => {
     const [allusers,setAllusers]= useState([]);
     const navigate = useNavigate();

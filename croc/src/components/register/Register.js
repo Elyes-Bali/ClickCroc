@@ -4,9 +4,9 @@ import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Swal from "sweetalert2";
-import Footer from "../../components/footer/Footer";
 import { GetAllUsers } from "../../apis/UserApi";
 import "./Register.css"
+import Footer from "../screens/Footer/Footer";
 
 const Register = () => {
   const [allusers,setAllusers]= useState([]);

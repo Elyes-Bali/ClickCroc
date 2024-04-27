@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Chart as ChartJS, LineElement } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 import { GetAllOff } from "../../../apis/OfferApi";
 import { CurrentUser, GetAllSel } from "../../../apis/UserApi";
 import SideBar from "../../dashboard/SideBar";
 
-ChartJS.register(LineElement);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const ManuChart = () => {
   const [offers, setOffers] = useState([]);

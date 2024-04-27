@@ -66,7 +66,7 @@ const Wishlist = () => {
           <h1 className="cart-heading ">My WishList</h1>
           {userwishes.length === 0 ? (
             <div className="empty-cart">
-              <p>Your cart is empty.</p>
+              <p>Your WishList is empty.</p>
             </div>
           ) : (
             userwishes.map((el) => (

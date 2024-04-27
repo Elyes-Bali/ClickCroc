@@ -14,6 +14,7 @@ import "./CharDb.css";
 import SideBar from "../dashboard/SideBar";
 import { GetAllOff } from "../../apis/OfferApi";
 import { Button } from "react-bootstrap";
+import { CurrentUser, GetAllSel } from "../../apis/UserApi";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,16 +26,77 @@ ChartJS.register(
 );
 
 const ChartDb = () => {
-  const [chart, setChart] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [allsel, setAllSel] = useState([]);
+  const [user, setUser] = useState({});
 
-  const isOffer = async () => {
-    const oflg = await GetAllOff();
-    setChart(oflg);
+  const isSell = async () => {
+    const uslg = await GetAllSel();
+    setAllSel(uslg);
+  };
+  const isLoggedIn = async () => {
+    const userLg = await CurrentUser();
+    setUser(userLg.data.user);
   };
 
+  const isOffers = async () => {
+    const uslg = await GetAllOff();
+    setOffers(uslg);
+    setLoading(false);
+  };
+
+  const calculateAverageRating = (offer) => {
+    if (!offer || !offer.rating || !Array.isArray(offer.rating) || offer.rating.length === 0) {
+      return 0; // Return 0 if the offer or its rating array is invalid or empty
+    }
+  
+    // Calculate the sum of all ratings
+    const totalRating = offer.rating.reduce((sum, rating) => sum + rating.rate, 0);
+  
+    // Calculate the average rating
+    const averageRating = totalRating / offer.rating.length;
+    return averageRating;
+  };
+  
+
+  console.log(user)
+console.log(allsel)
   useEffect(() => {
-    isOffer();
+    isOffers();
+    isSell();
+    isLoggedIn();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;  
+  }
+
+  // const filteredOffers = offers.filter((offer) => {
+  //   const matches = allsel.some((sel) => {
+  //     const match = sel._id === offer.createdbyId && user?.company?.toLowerCase() === offer?.brand?.toLowerCase();
+  //     // console.log("Offer:", offer, "Sel:", sel, "Match:", match);
+  //     return match;
+  //   });
+  //   console.log("Filtered:", offer, "Matches:", matches);
+  //   return matches;
+  // });
+
+
+  const data = {
+    labels: offers.map((offer) => offer.prjectname.substring(0, 10)),
+    datasets: [
+      {
+        label: "Average Rating",
+        data: offers.map((offer) => calculateAverageRating(offer)),
+        fill: false,
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+        pointBackgroundColor: "rgba(75, 192, 192, 1)",
+      },
+    ],
+  };
+  
 
   const options = {
     responsive: true,
@@ -44,65 +106,48 @@ const ChartDb = () => {
       },
       title: {
         display: true,
-        text: "All Products",
+        text: "Average Rating of Offers",
       },
     },
-  };
-
-  const data = {
-    labels: chart?.map((x) => x.prjectname.substring(0, 11)),
-    datasets: [
-      {
-        label: `${chart?.length} Products Available`,
-        data: chart.map((x) => x.budget),
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
       },
-    ],
+      y: {
+        grid: {
+          display: true,
+        },
+      },
+    },
+    indexAxis: "x",
   };
-  console.log(chart);
   return (
     <div className="mdd">
-      <SideBar />
-      <div className="ctn">
-       
-        <div className="content-wrapper cadre">
-          <div className="card cdr w3-hover-shadow ">
-          <Button
+    <SideBar/>
+  <div className="">
+    <div className="content-wrapper cadre mt-4">
+      <div className="card cdr w3-hover-shadow">
+      <Button
           className="btn btn-success me-4 rounded-pill px-4 py-2 mt-4"
           href="/adminProducts"
         >
           View Products
-        </Button>
-            <div className="card-header">
-              <h5 className="card-title">Products and Prices</h5>
-
-              <div className="card-tools"></div>
-            </div>
-            <div className="card-body">
-              <div className="cht">
-                <Line data={data} options={options} />
-              </div>
-            </div>
+          </Button>
+        <div className="card-header">
+          <h5 className="card-title mt-4">My Produts Rates</h5>
+          <div className="card-tools"></div>
+        </div>
+        <div className="card-body">
+          <div className="cht">
+            <Line data={data} options={options} />
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
   );
 };
 

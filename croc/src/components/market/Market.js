@@ -17,7 +17,7 @@ const Market = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [user, setUser] = useState({});
-  const[avg, setAvg] = useState(0);
+  const [avg, setAvg] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
   const isDevs = async () => {
@@ -59,7 +59,6 @@ const Market = () => {
     }
   };
 
-
   const handleCategFilter = (e) => {
     const selectedcateg = e.target.value;
     if (selectedcateg === "") {
@@ -72,66 +71,65 @@ const Market = () => {
     }
   };
 
+  const calculateAverageRating = (item) => {
+    if (
+      !item ||
+      !item.rating ||
+      !Array.isArray(item.rating) ||
+      item.rating.length === 0
+    ) {
+      return 0; // Return 0 if the item or its rating array is invalid or empty
+    }
 
+    // Calculate the sum of all ratings
+    const totalRating = item.rating.reduce(
+      (sum, rating) => sum + rating.rate,
+      0
+    );
 
-const calculateAverageRating = (item) => {
-  if (!item || !item.rating || !Array.isArray(item.rating) || item.rating.length === 0) {
-    return 0; // Return 0 if the item or its rating array is invalid or empty
-  }
+    // Calculate the average rating
+    const averageRating = totalRating / item.rating.length;
 
-  // Calculate the sum of all ratings
-  const totalRating = item.rating.reduce((sum, rating) => sum + rating.rate, 0);
+    return averageRating;
+  };
 
-  // Calculate the average rating
-  const averageRating = totalRating / item.rating.length;
+  // Calculate average ratings for all items in listdev
+  const averageRatings = listdev.map(calculateAverageRating);
 
-  return averageRating;
-};
+  console.log("Average Ratings:", averageRatings);
 
-// Calculate average ratings for all items in listdev
-const averageRatings = listdev.map(calculateAverageRating);
+  // Filter products based on average rating within a range
+  const filterByRating = (range) => {
+    const filteredByRating = listdev.filter((item) => {
+      const averageRating = calculateAverageRating(item);
+      return averageRating >= range.min && averageRating <= range.max;
+    });
+    setFilteredResults(filteredByRating);
+  };
 
-console.log("Average Ratings:", averageRatings);
+  // Define ranges
+  // Define ranges
+  // Define ranges
+  const ratingRanges = [
+    { min: 1, max: 1 },
+    { min: 2, max: 2 },
+    { min: 3, max: 3 },
+    { min: 4, max: 4 },
+    { min: 5, max: 5 },
+  ];
 
+  // Display buttons for each rating range
+  // Display dropdown selector for rating range
+  const ratingSelector = (
+    <input
+      type="range"
+      min="0"
+      max={ratingRanges.length - 1}
+      onChange={(e) => filterByRating(ratingRanges[e.target.value])}
+    />
+  );
 
-// Filter products based on average rating within a range
-const filterByRating = (range) => {
-  const filteredByRating = listdev.filter((item) => {
-    const averageRating = calculateAverageRating(item);
-    return averageRating >= range.min && averageRating <= range.max;
-  });
-  setFilteredResults(filteredByRating);
-};
-
-// Define ranges
-// Define ranges
-// Define ranges
-const ratingRanges = [
-  { min: 1, max: 1 },
-  { min: 2, max: 2 },
-  { min: 3, max: 3 },
-  { min: 4, max: 4 },
-  { min: 5, max: 5 },
-];
-
-// Display buttons for each rating range
-// Display dropdown selector for rating range
-const ratingSelector = (
-  <input
-    type="range"
-    min="0"
-    max={ratingRanges.length - 1}
-    onChange={(e) => filterByRating(ratingRanges[e.target.value])}
-  />
-);
-
-// Use the ratingSelector to display the filter dropdown
-
-
-
-
-
-
+  // Use the ratingSelector to display the filter dropdown
 
   const currentItemsToDisplay =
     filteredResults.length > 0 ? filteredResults : currentItems;
@@ -148,7 +146,7 @@ const ratingSelector = (
       setFilteredResults(filteredByPrice);
     }
   };
-console.log(listdev);
+  console.log(listdev);
   useEffect(() => {
     isDevs();
     isUser();
@@ -206,12 +204,11 @@ console.log(listdev);
           </div>
         </div>
       </section>
-      <div className="d-flex justify-content-center mt-5 bg-transparent">
-        <Brand/>
+      <div className="d-flex justify-content-center brander bg-transparent">
+        <Brand />
       </div>
-     
 
-      <div className="container py-4">
+      <div className="container py-4 productstitle">
         <div className="row">
           <div className="col-12 background-container">
             <h1 className="display-6 fw-bolder text-left">Products </h1>
@@ -258,7 +255,7 @@ console.log(listdev);
                   <option value="Grocery & Staples">Grocery & Staples</option>
                   {/* Add more options as needed */}
                 </select>
-                <br/>
+                <br />
                 <p className="mb-3 mt-3 free">
                   <b>Sort by Price</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
@@ -277,14 +274,12 @@ console.log(listdev);
                   <b>Sort by Rate</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </p>
-                <div className="rating-filters">
-      {ratingSelector}
-    </div>
+                <div className="rating-filters">{ratingSelector}</div>
               </div>
             </div>
             <div className="col-md-9">
               <div className="row">
-                <div className="row">
+                <div className="row itemcardes">
                   {selectedPrice > 0 && filteredResults.length === 0 ? (
                     <p>No products found within the selected price range.</p>
                   ) : currentItemsToDisplay.length === 0 ? (

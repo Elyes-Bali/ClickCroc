@@ -103,9 +103,9 @@ const ItemCard = ({dev,use}) => {
       <Card.Body>
         {/* <Avatar className="avatar" size="md" cursor="pointer" name={dev?.name} src={dev?.pic}/> */}
         <ModalTitle>{dev?.prjectname?.substring(0,20)}</ModalTitle>
-        <Card.Text>
+        {/* <Card.Text>
           {dev?.detail?.substring(0,50)}...
-        </Card.Text>
+        </Card.Text> */}
         <Card.Text>
   {isNaN(averageRate) ? "Not rated yet" : averageRate.toString().substring(0, 3)}&nbsp;<i class="fa fa-star" aria-hidden="true"></i>
 </Card.Text>

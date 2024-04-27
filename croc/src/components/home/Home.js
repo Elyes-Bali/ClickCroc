@@ -9,6 +9,7 @@ import Banner from "../slider/Banner";
 import BannerBottom from "../slider/BannerBottom";
 import Sale from "../screens/Sale/Sale";
 import Footer from "../screens/Footer/Footer";
+import BestS from "../best/BestS";
 
 
 const Home = () => {
@@ -46,6 +47,9 @@ const Home = () => {
       <BannerBottom/>
     </div>
     <Sale/>
+    <div className="d-flex justify-content-center bestSeller">
+    <BestS/>
+    </div>
     <div className=" about">
       <About id="contact" id1="services" />
     </div>

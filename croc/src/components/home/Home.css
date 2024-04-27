@@ -54,3 +54,9 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida San
 .homeft{
   margin-top: -10% !important;
 }
+
+.bestSeller{
+  margin-bottom: 10% !important;
+  margin-top: -5% !important;
+  text-align: center;
+}

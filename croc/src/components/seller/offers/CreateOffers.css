@@ -24,6 +24,23 @@
   min-height: 500px;
 } */
 
+.price-input {
+  margin-bottom: 15px; /* Optional: Adjust spacing */
+}
+
+.currency {
+  margin-right: 5px;
+}
+
+.input-with-currency {
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  flex-grow: 1; /* Make the input grow to fill the remaining space */
+  margin-left: 5px; /* Optional: Adjust spacing */
+}
 
 .myim::file-selector-button {
   cursor: pointer;

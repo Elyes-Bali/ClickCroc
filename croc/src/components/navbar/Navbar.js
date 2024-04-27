@@ -354,6 +354,13 @@ const Navbar = ({ ping }) => {
                             &nbsp; Blogs
                           </a>
                         </li>
+
+                        <li>
+                          <a className="dropdown-item" href="/allwishesad">
+                            <i className="fa fa-bookmark" aria-hidden="true" />
+                            &nbsp; WishListes
+                          </a>
+                        </li>
                       </>
                     )}
                     {isManufacturer && !isAdmin && (
@@ -377,6 +384,7 @@ const Navbar = ({ ping }) => {
                     )}
                     {isSeller && (
                       <>
+                   
                         <a className="dropdown-item" href="/clt">
                           <i className="fa fa-archive" aria-hidden="true" />
                           &nbsp; My Products
@@ -396,7 +404,7 @@ const Navbar = ({ ping }) => {
                         <li>
                           <a className="dropdown-item" href="/adblogs">
                             <i className="fa fa-file" aria-hidden="true" />
-                            &nbsp; Blogs
+                            &nbsp; Blogs & Rates
                           </a>
                         </li>
                       </>

@@ -108,15 +108,6 @@ const ModalCl = ({ offrr, keey }) => {
           />
         </Form.Group>
         <br />
-
-        <Form.Group>
-          <Form.Control
-            type="text"
-            placeholder="Product Maker ?"
-            value={offer?.prdmake}
-            onChange={(e) => setOffer({ ...offer, prdmake: e.target.value })}
-          />
-        </Form.Group>
        
         <br />
         <Form.Group>

@@ -144,7 +144,7 @@ const Blog = () => {
               <b className="d-flex justify-content-center">
                 Add Blog
               </b>
-              <div className="col-md-3">
+              <div className="col-md-3 blogpic">
                 <br />
                 <br />
                 <br />

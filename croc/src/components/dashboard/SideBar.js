@@ -6,6 +6,7 @@ import { CurrentUser } from "../../apis/UserApi";
 const SideBar = () => {
   const isAdmin = localStorage.getItem("isAdmin");
   const isManufacturer = localStorage.getItem("isManufacturer");
+  const isSeller = localStorage.getItem("isSeller");
   const [user, setUser] = useState({});
   const isLoggedIn = async () => {
     const userLg = await CurrentUser();
@@ -26,9 +27,17 @@ const SideBar = () => {
               name={user?.username}
               src={user?.pic}
             />
+            {isSeller && (
+              <li className="list-item mt-5">
+                <a href="/selprodata" className="nav-link">
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                  <span className="list-item-text ml-1">Products Rate</span>
+                </a>
+              </li>
+            )}
             {isAdmin && (
               <>
-                <li className="list-item mt-5">
+                <li className="list-item mt-1">
                   <a href="/dashboard" className="nav-link">
                     <i
                       style={{ fontSize: "20px" }}
@@ -37,13 +46,13 @@ const SideBar = () => {
                     <span className="list-item-text">HOME</span>
                   </a>
                 </li>
-
-                {/* <li className="list-item">
-              <a href="/adprof" className="nav-link">
-                <i className="list-item-icon fas fa-user" />
-                <span className="list-item-text">PROFILE</span>
-              </a>
-            </li> */}
+{/* 
+                <li className="list-item">
+                  <a href="/allwishesad" className="nav-link">
+                    <i className="list-item-icon fas fa-user" />
+                    <span className="list-item-text">WISHLISTES</span>
+                  </a>
+                </li> */}
                 {/* 
             <li className="list-item">
               <a href="/usersdb" className="nav-link">
@@ -58,12 +67,13 @@ const SideBar = () => {
               </a>
             </li> */}
 
-                {/* <li className="list-item">
-              <a href="/adof" className="nav-link">
-                <i className="list-item-icon fas fa-database" />
-                <span className="list-item-text">MY OFFERS</span>
-              </a>
-            </li> */}
+                <li className="list-item">
+                  <a href="/comdb" className="nav-link">
+                    <i class="fa fa-comments-o" aria-hidden="true" />
+                    &nbsp;
+                    <span className="list-item-text">COMMENTS</span>
+                  </a>
+                </li>
                 <li className="list-item">
                   <a href="/allAdProducts" className="nav-link">
                     <i class="fa fa-product-hunt" aria-hidden="true" /> &nbsp;
@@ -93,19 +103,19 @@ const SideBar = () => {
             )}
             {isManufacturer && !isAdmin && (
               <>
-              <li className="list-item mt-4">
-                <a href="/manuprof" className="nav-link">
-                  <i className="list-item-icon fas fa-user" />
-                  <span className="list-item-text">PROFILE</span>
-                </a>
-              </li>
-               <li className="list-item mt-4">
-               <a href="/manuchart" className="nav-link">
-                 <i className="list-item-icon fas fa-database" />
-                 <span className="list-item-text">DATA</span>
-               </a>
-             </li>
-             </>
+                <li className="list-item mt-4">
+                  <a href="/manuprof" className="nav-link">
+                    <i className="list-item-icon fas fa-user" />
+                    <span className="list-item-text">PROFILE</span>
+                  </a>
+                </li>
+                <li className="list-item mt-4">
+                  <a href="/manuchart" className="nav-link">
+                    <i className="list-item-icon fas fa-database" />
+                    <span className="list-item-text">DATA</span>
+                  </a>
+                </li>
+              </>
             )}
           </ul>
         </div>
