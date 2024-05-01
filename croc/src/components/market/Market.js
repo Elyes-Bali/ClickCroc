@@ -13,6 +13,8 @@ import Footer from "../screens/Footer/Footer";
 import Brand from "../screens/brand/Brand";
 
 const Market = () => {
+  const token = localStorage.getItem("token");
+
   const [listdev, setListdev] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -155,7 +157,8 @@ const Market = () => {
   console.log(listdev);
   useEffect(() => {
     isDevs();
-    isUser();
+    
+    token && isUser();
   }, []);
   return (
     <div id="cmnt mb-5">

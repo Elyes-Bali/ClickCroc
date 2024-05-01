@@ -52,7 +52,7 @@ const Navbar = ({ ping }) => {
   };
 
   useEffect(() => {
-    isLoggedIn();
+    token && isLoggedIn();
     isOff();
   }, [ping]);
 

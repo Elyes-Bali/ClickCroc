@@ -33,17 +33,16 @@ const userSchema = new mongoose.Schema(
     },
     authorize: {
       type: Boolean,
-      default: true,
+    
+    },
+    isValid: {
+      type: Boolean,
+      default: false,
     },
     phone: {
       type: Number,
     },
-    children: {
-      type: Array,
-    },
-    phone: {
-      type: Number,
-    },
+
     age: {
       type: Number,
     },
@@ -62,7 +61,8 @@ const userSchema = new mongoose.Schema(
     company: {
       type: String,
     },
-
+    resetValidToken: String,
+    resetValidExpire: Date,
     images: [Object],
   },
   { timestamps: true }
@@ -101,6 +101,18 @@ userSchema.methods.getResetPasswordToken = function () {
   return { resetToken, resetPasswordToken: this.resetPasswordToken };
 };
 
+userSchema.methods.generatePasswordToken = function () {
+  const resetToken = crypto.randomBytes(20).toString("hex");
+
+  this.resetValidToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+    this.resetValidExpire = Date.now() + 2 * 60 * 60 * 1000; // 1h
+
+  return { resetToken, resetValidToken: this.resetValidToken };
+};
 
 // Create Model
 module.exports = Users = mongoose.model("USER", userSchema);

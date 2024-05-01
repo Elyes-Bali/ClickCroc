@@ -1,0 +1,31 @@
+.verific {
+    padding-top: 175px;
+    padding-bottom: 160px;
+    text-align: center;
+    border: solid 1px #ccc;
+    width: 100%;
+  }
+  .verific1 {
+    width: 40%;
+    margin: 0 auto;
+    background-color: rgba(173, 216, 230, 0.5);
+    height: 350px;
+    padding-top: 140px;
+    border-radius: 20px;
+  }
+  .btnverifc {
+    padding: 20px 50px;
+    min-width: 370px;
+    background: rgba(0, 128, 0, 0.498);
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+  }
+  .btnverifc:hover {
+    background: rgba(0, 128, 0);
+    color: black;
+    font-weight: bold;
+    border: 1px solid #ffc909;
+  }
+  

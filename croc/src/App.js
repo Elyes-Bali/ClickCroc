@@ -51,6 +51,7 @@ import Commentsdb from "./components/dashboard/Commentsdb";
 import AllWishesLites from "./components/dashboard/AllWishesLites";
 import Categories from "./components/dashboard/categories/Categories";
 import AllCategories from "./components/dashboard/AllCategories";
+import Validation from "./components/validation/Validation";
 
 
 
@@ -117,7 +118,7 @@ function App() {
         <Route path="/selprodata" element={<SellerProds/>} />
 
         <Route path="/allblog" element={<BlogPage />} />
-       
+        <Route path="/activercompte/:token" element={<Validation />} />
    
 
         
