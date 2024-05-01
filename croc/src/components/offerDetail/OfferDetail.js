@@ -240,7 +240,7 @@ const OfferDetail = ({ ping, setPing }) => {
                 {dev.ownerId}
               </h3>
               <h3 className="fs-5 mb-2">
-                <b>Type:</b> {dev.duree}
+                <b>Family:</b> {dev.duree}
               </h3>
               <h3 className="fs-5 mb-2">
                 <b>Prix: </b>

@@ -172,9 +172,11 @@ const Profile = ({ ping, setPing }) => {
                       className="form-control"
                       type="number"
                       value={user?.phone}
-                      onChange={(e) =>
-                        setUser({ ...user, phone: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const newValue = e.target.value.slice(0, 8);
+                        setUser({ ...user, phone: newValue });
+                      }}
+                      plac
                       placeholder="Phone Number"
                     />
                   </Form.Group>
@@ -200,9 +202,10 @@ const Profile = ({ ping, setPing }) => {
                       className="form-control"
                       type="number"
                       value={user?.age}
-                      onChange={(e) =>
-                        setUser({ ...user, age: e.target.value })
-                      }
+                      onChange={(e) =>{
+                        const newValue = e.target.value.slice(0, 3);
+                        setUser({ ...user, age: newValue })
+                      }}
                       placeholder="Your Age"
                     />
                   </Form.Group>

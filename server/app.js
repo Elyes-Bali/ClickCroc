@@ -26,6 +26,10 @@ app.use("/api/sendemail", require('./routes/RouteMessage'));
 app.use("/api/comment", require('./routes/Comments'));
 app.use("/api/blog", require('./routes/Blog'));
 app.use("/api/blog/upload",require("./routes/PhotoImgsUpload"));
+app.use("/api/categ", require('./routes/Categorie'));
+app.use("/api/gamme", require('./routes/Gamme'));
+app.use("/api/family", require('./routes/Famille'));
+
 
 
 

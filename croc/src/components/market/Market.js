@@ -34,7 +34,13 @@ const Market = () => {
   const handleSearch = (e) => {
     setSearchInput(e.target.value.toLowerCase());
     const searchFruits = listdev.filter((el) => {
-      return el.prjectname.toLowerCase().includes(e.target.value.toLowerCase());
+      return (
+        el.prjectname.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        el.brand.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        el.duree.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        el.colors.toLowerCase().includes(e.target.value.toLowerCase()) 
+       
+      );
     });
     setFilteredResults(searchFruits);
   };

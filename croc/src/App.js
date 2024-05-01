@@ -13,13 +13,13 @@ import Logout from "./components/logout/Logout";
 import Dashboard from "./components/dashboard/Dashboard";
 import UsersDB from "./components/dashboard/UsersDB";
 import Messg from "./components/dashboard/Messg";
-import PatientRoute from "./components/routes/PatientRoute";
+
 import Adminroute from "./components/routes/Adminroute";
 import ProtectedRoutes from "./components/routes/ProtectedRoute";
 import Errorpage from "./components/error/Errorpage";
 import CreateOffers from "./components/seller/offers/CreateOffers"
 import Chartes from "./components/dashboard/Chartes";
-import Children from "./components/children/Children";
+
 import SideBar from "./components/dashboard/SideBar";
 import Profile from "./components/profile/Profile";
 import Logup from "./components/seller/logup/Logup";
@@ -49,6 +49,8 @@ import AdminProducts from "./components/dashboard/adminProducts/AdminProducts";
 import SellerProds from "./components/client/sellerProds/SellerProds";
 import Commentsdb from "./components/dashboard/Commentsdb";
 import AllWishesLites from "./components/dashboard/AllWishesLites";
+import Categories from "./components/dashboard/categories/Categories";
+import AllCategories from "./components/dashboard/AllCategories";
 
 
 
@@ -73,9 +75,7 @@ function App() {
         <Route path="/check" element={<Checkemail />} />
         <Route path="/reset/:token" element={<PasswordRes />} />
      
-        <Route element={<PatientRoute />}>
-        <Route path="/mychildren" element={<Children ping={ping} setPing={setPing}/>} />
-        </Route>
+    
         <Route path="/advices" element={<Advices />} />
         <Route element={<ProtectedRoutes />}>
         <Route path="/login" element={<Login />} />
@@ -96,6 +96,8 @@ function App() {
         <Route path="/adminProducts" element={<AdminProducts />} />
         <Route path="/comdb" element={<Commentsdb />} />
         <Route path="/allwishesad" element={<AllWishesLites />} />
+        <Route path="/createCategory" element={<Categories />} />
+        <Route path="/allcategories" element={<AllCategories />} />
         
         <Route path="/adprof" element={<AdminProfile ping={ping} setPing={setPing}/>} />
         </Route>
@@ -115,6 +117,7 @@ function App() {
         <Route path="/selprodata" element={<SellerProds/>} />
 
         <Route path="/allblog" element={<BlogPage />} />
+       
    
 
         

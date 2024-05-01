@@ -32,20 +32,6 @@ const isMessages = async () => {
             Received Mails
             </h5>
             <div className="card-tools">
-              {/* <button
-                type="button"
-                className="btn btn-tool"
-                data-card-widget="collapse"
-              >
-                <i className="fas fa-minus" />
-              </button>
-              <button
-                type="button"
-                className="btn btn-tool"
-                data-card-widget="remove"
-              >
-                <i className="fas fa-times" />
-              </button> */}
             </div>
           </div>
           <div className="card-body">
