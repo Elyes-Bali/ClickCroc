@@ -36,7 +36,6 @@ router.post("/register", async (req, res) => {
     await createUser.save();
     const created = await createUser.save();
 
-
     // Send email with reset password link
     const message =
       "You are receiving this because you (or someone else) have requested the activation for your account.\n\n" +
@@ -57,8 +56,6 @@ router.post("/register", async (req, res) => {
 });
 router.put("/validateaccount/:token", async (req, res) => {
   try {
-
-
     const resetValidToken = crypto
       .createHash("sha256")
       .update(req.params.token)
@@ -69,95 +66,103 @@ router.put("/validateaccount/:token", async (req, res) => {
       resetValidExpire: { $gt: Date.now() },
     });
 
-    if (!user)return res.status(400).send({ error: "Invalid Token or expired" });
+    if (!user)
+      return res.status(400).send({ error: "Invalid Token or expired" });
 
-    user.isValid=true
+    user.isValid = true;
 
     await user.save();
 
-    if(user.role != "clt"){
-      res.status(200).send({ message: "Account activated , please wait for the Admin confirmation" });
-
-    }else{
-      res.status(200).send({ message: "Account activated , You can login now" });
-
+    if (user.role != "clt") {
+      res
+        .status(200)
+        .send({
+          message: "Account activated , please wait for the Admin confirmation",
+        });
+    } else {
+      res
+        .status(200)
+        .send({ message: "Account activated , You can login now" });
     }
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 }),
-// router.post("/logup", async (req, res) => {
-//   try {
-//     // Get body or Data
-//     const { username, email, password, role, authorize, company } = req.body;
-//     console.log(username, email, password);
+  // router.post("/logup", async (req, res) => {
+  //   try {
+  //     // Get body or Data
+  //     const { username, email, password, role, authorize, company } = req.body;
+  //     console.log(username, email, password);
 
-//     const createUser = new User({
-//       username,
-//       email,
-//       password,
-//       role,
-//       authorize,
-//       company,
-//     });
+  //     const createUser = new User({
+  //       username,
+  //       email,
+  //       password,
+  //       role,
+  //       authorize,
+  //       company,
+  //     });
 
-//     // Save Method is Used to Create User or Insert User
-//     // But Before Saving or Inserting, Password will Hash
-//     // Because of Hashing. After Hash, It will save to DB
-//     const created = await createUser.save();
-//     console.log(created);
-//     res.status(200).send("Registered");
-//   } catch (error) {
-//     res.status(400).send(error);
-//   }
-// });
+  //     // Save Method is Used to Create User or Insert User
+  //     // But Before Saving or Inserting, Password will Hash
+  //     // Because of Hashing. After Hash, It will save to DB
+  //     const created = await createUser.save();
+  //     console.log(created);
+  //     res.status(200).send("Registered");
+  //   } catch (error) {
+  //     res.status(400).send(error);
+  //   }
+  // });
 
-router.post("/login", async (req, res) => {
-  try {
-    const email = req.body.email;
-    const password = req.body.password;
+  router.post("/login", async (req, res) => {
+    try {
+      const email = req.body.email;
+      const password = req.body.password;
 
-    // Find User if Exist
-    const user = await User.findOne({ email: email });
+      // Find User if Exist
+      const user = await User.findOne({ email: email });
 
-    if (!user) {
-      return res.status(400).send({ msg: "Invalid Credentials" });
-    }
-
-    // if (user.authorize === false) {
-    //   return res.status(400).send({ msg: "User Blocked" });
-    // }
-
-    if (user.role != "clt" && user.role!="admin") {
-      if (user.authorize === false) {
-        return res.status(400).send({ msg: "User Blocked" });
+      if (!user) {
+        return res.status(400).send({ msg: "Invalid Credentials" });
       }
-      if (user.isValid === false) {
-        return res.status(400).send({ msg: "Activate Your Account !" });
-      }
-    } else {
-      if (user.isValid === false) {
-        return res.status(400).send({ msg: "User Blocked" });
-      }
-    }
-    // Verify Password
-    const isMatch = await bcryptjs.compare(password, user.password);
 
-    if (!isMatch) {
-      return res.status(400).send({ msg: "Invalid Credentials" });
+      // if (user.authorize === false) {
+      //   return res.status(400).send({ msg: "User Blocked" });
+      // }
+
+      if (user.role != "clt" && user.role != "admin") {
+        if (user.authorize === false) {
+          return res.status(400).send({ msg: "User Blocked" });
+        }
+        if (user.isValid === false) {
+          return res.status(400).send({ msg: "Activate Your Account !" });
+        }
+      } else {
+        if (user.isValid === false) {
+          return res.status(400).send({ msg: "Activate Your Account !" });
+        }
+        if (user.authorize === false) {
+          return res.status(400).send({ msg: "User Blocked" });
+        }
+      }
+      // Verify Password
+      const isMatch = await bcryptjs.compare(password, user.password);
+
+      if (!isMatch) {
+        return res.status(400).send({ msg: "Invalid Credentials" });
+      }
+      // Generate Token Which is Define in User Schema
+      const token = await user.generateToken();
+      // res.cookie("jwt", token )
+      // res.status(200).send("LoggedIn")
+      return res
+        .status(200)
+        .send({ searchedUser: user, token: `Bearer ${token}` });
+    } catch (error) {
+      return res.status(500).send({ msg: "can not login" });
+      console.log(error);
     }
-    // Generate Token Which is Define in User Schema
-    const token = await user.generateToken();
-    // res.cookie("jwt", token )
-    // res.status(200).send("LoggedIn")
-    return res
-      .status(200)
-      .send({ searchedUser: user, token: `Bearer ${token}` });
-  } catch (error) {
-    return res.status(500).send({ msg: "can not login" });
-    console.log(error);
-  }
-});
+  });
 
 router.get("/auth", isAuth(), (req, res) => {
   res.status(200).send({ user: req.user });

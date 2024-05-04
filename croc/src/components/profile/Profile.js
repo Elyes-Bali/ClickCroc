@@ -7,6 +7,11 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Profile = ({ ping, setPing }) => {
+  const token = localStorage.getItem("token");
+  const isAdmin = localStorage.getItem("isAdmin");
+  const isSeller = localStorage.getItem("isSeller");
+  const isManufacturer = localStorage.getItem("isManufacturer");
+  const isClient = localStorage.getItem("isClient");
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -15,10 +20,12 @@ const Profile = ({ ping, setPing }) => {
     age: "",
     city: "",
     state: "",
-    adress:"",
-    company:"",
+    adress: "",
+    company: "",
+    authorize: 0,
     images: [],
   });
+
   const navigate = useNavigate();
   const isLoggedIn = async () => {
     const userLg = await CurrentUser();
@@ -88,30 +95,99 @@ const Profile = ({ ping, setPing }) => {
     const res = await axios.put(`/api/user/update/${user._id}`, user, config);
     setPing(!ping);
     Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Your data has been saved',
+      position: "top-end",
+      icon: "success",
+      title: "Your data has been saved",
       showConfirmButton: false,
-      timer: 1500
-    })
-    navigate('/');
-    
+      timer: 1500,
+    });
+    navigate("/Profil");
   };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("isSeller");
+    localStorage.removeItem("isManufacturer");
+    localStorage.removeItem("isClient");
+  };
+
+  const [confirmationInput, setConfirmationInput] = useState("");
+
+  // Function to handle confirmation input change
+  const handleConfirmationInputChange = (e) => {
+    setConfirmationInput(e.target.value);
+  };
+  // const hundelBlock = async () => {
+  //   // Set the user state to update the authorize property first
+  //   setUser((prevUser) => ({ ...prevUser, authorize: false }));
+  
+  //   // Now, make the API call with the updated user object
+  //   const config = { headers: { "Content-Type": "application/json" } };
+  //   const res = await axios.put(`/api/user/update/${user._id}`, { ...user, authorize: false }, config);
+
+  //   // Handle the response or any other logic here
+  // };
+  
+  const hundelBlock = async () => {
+    // Validate confirmation input
+    if (confirmationInput !== "confirm") {
+      alert("Please enter the correct confirmation");
+      return;
+    }
+
+    // Set the user state to update the authorize property first
+    setUser((prevUser) => ({ ...prevUser, authorize: false }));
+
+    // Now, make the API call with the updated user object
+    const config = { headers: { "Content-Type": "application/json" } };
+    const res = await axios.put(`/api/user/update/${user._id}`, { ...user, authorize: false }, config);
+    Swal.fire({
+      title: "Good job!",
+      text: "Your Account will be blocked as you logout!",
+      icon: "success"
+    });
+    
+    // Handle the response or any other logic here
+  };
+
+  // const hundelBlock = async () => {
+  //  
+
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+
+  //       // hundelUpdate();
+  //       // handleLogout();
+  //       // navigate("/logout");
+  //       Swal.fire({
+  //         title: "Deleted!",
+  //         text: "Your file has been deleted.",
+  //         icon: "success",
+  //       });
+  //     }
+  //   });
+  // };
 
   return (
     <div id="Profile">
-    
       <section className="prt">
-     
         <div className="container shadow my-5 py-5">
-        <p className="text-center fs-1">My Profile</p>
+          <p className="text-center fs-1">My Profile</p>
           <div className="row">
             <div className="col-md-5">
               <br />
               <br />
               <br />
               <h1 className="text-center text-bold">
-              Upload Your Profile Picture{" "}
+                Upload Your Profile Picture{" "}
               </h1>
 
               <div className="imggg">
@@ -202,9 +278,9 @@ const Profile = ({ ping, setPing }) => {
                       className="form-control"
                       type="number"
                       value={user?.age}
-                      onChange={(e) =>{
+                      onChange={(e) => {
                         const newValue = e.target.value.slice(0, 3);
-                        setUser({ ...user, age: newValue })
+                        setUser({ ...user, age: newValue });
                       }}
                       placeholder="Your Age"
                     />
@@ -288,11 +364,31 @@ const Profile = ({ ping, setPing }) => {
                 Save
               </Button>
             </div>
+            <div>
+             
+      <div className="row w-25 pl-3">
+        {/* Confirmation input */}
+        <h2 className="mb-2">Do You  Want To Block Your ACCOUNT? type "confirm"</h2>
+        <input
+        className="mb-2 form-control"
+          type="text"
+          value={confirmationInput}
+          onChange={handleConfirmationInputChange}
+          placeholder="Type 'confirm' to proceed"
+        />
+        {/* Block account button */}
+        <button
+          className="btn btn-danger rounded-pill"
+          onClick={hundelBlock}
+          disabled={confirmationInput !== "confirm"} // Disable if confirmation input is not 'confirm'
+        >
+          BLOCK ACCOUNT
+        </button>
+      </div>
+            </div>
           </div>
         </div>
       </section>
-
-     
     </div>
   );
 };

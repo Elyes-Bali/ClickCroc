@@ -11,6 +11,7 @@ import { Input, Button } from "@chakra-ui/react";
 import { GetAllOff } from "../../apis/OfferApi";
 import Footer from "../screens/Footer/Footer";
 import Brand from "../screens/brand/Brand";
+import { GetAllCateg, GetAllFamily, GetAllGamme } from "../../apis/Category";
 
 const Market = () => {
   const token = localStorage.getItem("token");
@@ -22,6 +23,9 @@ const Market = () => {
   const [avg, setAvg] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [category, setCategory] = useState([]);
+  const [family, setFamily] = useState([]);
+  const [gamme, setGamme] = useState([]);
   const isDevs = async () => {
     const AllDev = await GetAllOff();
 
@@ -40,8 +44,7 @@ const Market = () => {
         el.prjectname.toLowerCase().includes(e.target.value.toLowerCase()) ||
         el.brand.toLowerCase().includes(e.target.value.toLowerCase()) ||
         el.duree.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        el.colors.toLowerCase().includes(e.target.value.toLowerCase()) 
-       
+        el.colors.toLowerCase().includes(e.target.value.toLowerCase())
       );
     });
     setFilteredResults(searchFruits);
@@ -74,6 +77,30 @@ const Market = () => {
     } else {
       const filteredByBrand = listdev.filter(
         (item) => item.colors === selectedcateg
+      );
+      setFilteredResults(filteredByBrand);
+    }
+  };
+
+  const handleGammeFilter = (e) => {
+    const selectedcateg = e.target.value;
+    if (selectedcateg === "") {
+      setFilteredResults([]);
+    } else {
+      const filteredByBrand = listdev.filter(
+        (item) => item.gamme === selectedcateg
+      );
+      setFilteredResults(filteredByBrand);
+    }
+  };
+
+  const handleFamilyFilter = (e) => {
+    const selectedcateg = e.target.value;
+    if (selectedcateg === "") {
+      setFilteredResults([]);
+    } else {
+      const filteredByBrand = listdev.filter(
+        (item) => item.duree === selectedcateg
       );
       setFilteredResults(filteredByBrand);
     }
@@ -155,9 +182,34 @@ const Market = () => {
     }
   };
   console.log(listdev);
+
+  const isCategory = async () => {
+    const categories = await GetAllCateg();
+    const categoryNames = categories.map((cat) => cat.category);
+    setCategory(categoryNames);
+  };
+
+  const isFamily = async () => {
+    const uslg = await GetAllFamily();
+    const FamilyNames = uslg.map((fam) => fam.family);
+
+    setFamily(FamilyNames);
+  };
+
+  const isGamme = async () => {
+    const uslg = await GetAllGamme();
+    const GammeNames = uslg.map((gam) => gam.gamme);
+
+    setGamme(GammeNames);
+  };
+
+  console.log(category);
+
   useEffect(() => {
     isDevs();
-    
+    isCategory();
+    isFamily();
+    isGamme();
     token && isUser();
   }, []);
   return (
@@ -244,7 +296,6 @@ const Market = () => {
                   <option value="Carrefour">CARREFOUR</option>
                   <option value="Mg">MG</option>
                   <option value="Aziza">Aziza</option>
-                  {/* Add more options as needed */}
                 </select>
                 <br />
 
@@ -254,14 +305,47 @@ const Market = () => {
                 </p>
                 <label htmlFor="category">Categories: &nbsp;</label>
                 <select id="category" onChange={handleCategFilter}>
-                  <option value="">All</option>
-                  <option value="Dairy">Dairy</option>
-                  <option value="Beverages">Beverages</option>
-                  <option value="Biscuits & Snacks">Biscuits & Snacks</option>
-                  <option value="Breads & Bakery">Breads & Bakery</option>
-                  <option value="Breakfast & Dairy">Breakfast & Dairy</option>
-                  <option value="Frozen Food">Frozen Food</option>
-                  <option value="Grocery & Staples">Grocery & Staples</option>
+                <option value="">All</option>
+
+                  {category.map((cat, index) => (
+                    <option key={index} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                  {/* Add more options as needed */}
+                </select>
+                <br />
+
+                <p className="free mb-3">
+                  <b>Shop by Gamme</b>{" "}
+                  <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                </p>
+                <label htmlFor="category">Gammes: &nbsp;</label>
+                <select id="category" onChange={handleGammeFilter}>
+                <option value="">All</option>
+
+                  {gamme.map((gam, index) => (
+                    <option key={index} value={gam}>
+                      {gam}
+                    </option>
+                  ))}
+                  {/* Add more options as needed */}
+                </select>
+                <br />
+
+                <p className="free mb-3">
+                  <b>Shop by Family</b>{" "}
+                  <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                </p>
+                <label htmlFor="category">Family: &nbsp;</label>
+                <select id="category" onChange={handleFamilyFilter}>
+                <option value="">All</option>
+
+                  {family.map((fam, index) => (
+                    <option key={index} value={fam}>
+                      {fam}
+                    </option>
+                  ))}
                   {/* Add more options as needed */}
                 </select>
                 <br />

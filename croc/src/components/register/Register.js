@@ -43,58 +43,41 @@ const Register = () => {
     const uslg = await GetAllUsers();
     setAllusers(uslg);
   };
-
-  //Handel Submit
+  console.log(user);
   const handleSubmit = async () => {
     const config = { headers: { "Content-Type": "application/json" } };
-    if(user.role !="clt")
-    {
-      setUser({...user, authorize:false})
-    }else{
-      setUser({...user, authorize:true})
-
-    }
+  
+    let updatedUser = { ...user };
+  
+    // Update user state based on role
+    updatedUser.authorize = user.role !== "clt" ? false : true;
+  
     try {
-      const res = await axios.post("/api/user/register", user, config);
-      //console.log(res.data.msg)
+      const res = await axios.post("/api/user/register", updatedUser, config);
       window.alert(res.data.msg);
-     
-      // else {
-      //   window.alert("Registered Successfully");
-      //   try {
-      //     const res = await axios.post("/api/user/login", user, config);
-      //     const getAdmin = localStorage.getItem("isAdmin");
-      //     localStorage.setItem("token", res.data.token);
-      //     res.data.searchedUser.isAdmin &&
-      //       localStorage.setItem("isAdmin", res.data.searchedUser.isAdmin);
-      //     console.log(res.data.searchedUser);
-      //     if (res.data.searchedUser.role === "clt") {
-      //       localStorage.setItem("isClient", res.data.searchedUser.role);
-      //       navigate("/");
-      //       window.location.reload();
-      //     }
-
-      //     if (res.data.searchedUser.isAdmin.toString() == "true") {
-      //       navigate("/dashboard");
-      //       window.location.reload();
-      //     }
-      //   } catch (error) {
-      //     const { errors, msg } = error.response.data;
-      //     if (Array.isArray(errors)) {
-      //       errors.map((el) => alert(el.msg));
-      //     }
-      //     if (msg) {
-      //       alert(msg);
-      //     }
-
-      //     console.log(error);
-      //   }
-      //   // navigate('/login')
-      // }
     } catch (error) {
       console.log(error);
     }
   };
+  
+  
+  
+  //Handel Submit
+  // const handleSubmit = async () => {
+  //   const config = { headers: { "Content-Type": "application/json" } };
+  //   if (user.role != "clt") {
+  //     setUser({ ...user, authorize: false });
+  //   } else {
+  //     setUser({ ...user, authorize: true });
+  //   }
+  //   try {
+  //     const res = await axios.post("/api/user/register", user, config);
+  //     //console.log(res.data.msg)
+  //     window.alert(res.data.msg);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handelCheck = (e) => {
     const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
@@ -211,21 +194,21 @@ const Register = () => {
                   click here
                 </button>
               </div> */}
-                <div>
-                    <label for="InputRole" className="form-label">
-                      Role
-                    </label>
-                    <select
-                      className="form-control"
-                      onChange={handleInput}
-                      name="role"
-                      value={user.role}
-                    >
-                      <option value="clt">Client</option>
-                      <option value="sel">Seller</option>
-                      <option value="manufacturer">Manufacturer </option>
-                    </select>
-                  </div>
+              <div>
+                <label for="InputRole" className="form-label">
+                  Role
+                </label>
+                <select
+                  className="form-control"
+                  onChange={handleInput}
+                  name="role"
+                  value={user.role}
+                >
+                  <option value="clt">Client</option>
+                  <option value="sel">Seller</option>
+                  <option value="manufacturer">Manufacturer </option>
+                </select>
+              </div>
               {user.role != "clt" && (
                 <div>
                   <div className="mb-3">
@@ -242,7 +225,6 @@ const Register = () => {
                       onChange={handleInput}
                     />
                   </div>
-                
                 </div>
               )}
 

@@ -6,12 +6,21 @@ import './ItemCard.css';
 import { CurrentUser } from "../../apis/UserApi";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { GetAllWishes } from "../../apis/WishApi";
 const ItemCard = ({dev,use}) => {
   const [user, setUser] = useState({});
+  const [wish, setWish] = useState([]);
+  const [userwishes, setUserwishes] = useState([]);
   const isSeller = localStorage.getItem("isSeller");
   const isAdmin = localStorage.getItem("isAdmin");
   const token = localStorage.getItem("token");
   const isManufacturer = localStorage.getItem("isManufacturer");
+
+  const isWish = async () => {
+    const oflg = await GetAllWishes();
+    setWish(oflg);
+  };
+
 
   const isUser = async () => {
     const AllUser = await CurrentUser();
@@ -81,10 +90,12 @@ const ItemCard = ({dev,use}) => {
       console.log(error);
     }
   };
-  // console.log(create) 
+  // console.log(userwishes) 
   useEffect(() => {
     isUser();
     setCreate({...create,ownerId:user._id});
+    isWish();
+    // setUserwishes(wish.filter((el) => el.ownerId === user._id));
   }, [user]);
   return (
     <Card className="item-card" style={{ width: "20rem" , margin:"1%" }}>

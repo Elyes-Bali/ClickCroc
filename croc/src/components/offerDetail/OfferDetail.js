@@ -15,6 +15,7 @@ import { GetAllWishes } from "../../apis/WishApi";
 const OfferDetail = ({ ping, setPing }) => {
   const location = useLocation();
   const { dev } = location.state;
+
   const [offer, setOffer] = useState([]);
   const [wishes, setWishes] = useState([]);
   const [useroffer, setUseroffer] = useState([]);
@@ -191,18 +192,15 @@ const OfferDetail = ({ ping, setPing }) => {
     isUsers();
     isComment();
     isWishes();
+    setUserwishes(wishes.filter((el) => el.ownerId === user._id));
     if (!hasScrolledRef.current) {
       window.scrollTo(0, 0);
       hasScrolledRef.current = true;
     }
     console.log(rates);
-  }, [user.length]);
-  console.log(wishes);
-  // useEffect(() => {
+  }, [user.length,wishes.length ]);
 
-  //   isComment();
-  // }, [user]);
-
+  console.log(userwishes);
   return (
     <div>
       <section>
@@ -226,11 +224,16 @@ const OfferDetail = ({ ping, setPing }) => {
               </div>
             </div>
             <div className="col-md-6">
-              <a className="contact-btn" onClick={handleWish}>
-                <i class="fa fa-bookmark" aria-hidden="true">
-                  &nbsp; WishList
-                </i>
-              </a>
+              <>
+              {!userwishes.some((el) => el.productId === dev._id) && (
+  <a className="contact-btn" onClick={handleWish}>
+    <i className="fa fa-bookmark" aria-hidden="true">
+      &nbsp; WishList
+    </i>
+  </a>
+)}
+
+              </>
               <hr />
 
               <br />
@@ -261,9 +264,12 @@ const OfferDetail = ({ ping, setPing }) => {
               </h3>
               <br />
               <h3 className="fs-5 mb-2">
-                <b>Adress <i class="fa fa-map-marker" aria-hidden="true"></i> :</b> {dev?.adress}
+                <b>
+                  Adress <i class="fa fa-map-marker" aria-hidden="true"></i> :
+                </b>{" "}
+                {dev?.adress}
               </h3>
-              <br/>
+              <br />
 
               <hr />
               <p className="lead mb-4">{dev.detail}</p>

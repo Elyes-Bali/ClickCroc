@@ -28,12 +28,26 @@ const SideBar = () => {
               src={user?.pic}
             />
             {isSeller && (
-              <li className="list-item mt-5">
+              <>
+               <li className="list-item mt-5">
+                <a href="/adblogs" className="nav-link">
+                  <i class="fa fa-file" aria-hidden="true"></i>
+                  <span className="list-item-text ml-3">My Blogs</span>
+                </a>
+              </li>
+              <li className="list-item mt-1">
                 <a href="/selprodata" className="nav-link">
                   <i class="fa fa-star-half-o" aria-hidden="true"></i>
                   <span className="list-item-text ml-1">Products Rate</span>
                 </a>
               </li>
+              <li className="list-item mt-1">
+                <a href="/clt" className="nav-link">
+                  <i class="fa fa-archive" aria-hidden="true"></i>
+                  <span className="list-item-text ml-1">My Products</span>
+                </a>
+              </li>
+              </>
             )}
             {isAdmin && (
               <>
