@@ -15,7 +15,12 @@ import Swal from "sweetalert2";
 import "./CreateOffers.css";
 import { useNavigate } from "react-router-dom";
 import { CurrentUser } from "../../../apis/UserApi";
-import { GetAllCateg, GetAllFamily, GetAllGamme } from "../../../apis/Category";
+import {
+  GetAllBrand,
+  GetAllCateg,
+  GetAllFamily,
+  GetAllGamme,
+} from "../../../apis/Category";
 
 const CreateOffers = () => {
   const isAdmin = localStorage.getItem("isAdmin");
@@ -40,6 +45,8 @@ const CreateOffers = () => {
   const [category, setCategory] = useState([]);
   const [family, setFamily] = useState([]);
   const [gamme, setGamme] = useState([]);
+  const [brands, setBrand] = useState([]);
+
   const isCatgory = async () => {
     const uslg = await GetAllCateg();
     setCategory(uslg);
@@ -51,6 +58,10 @@ const CreateOffers = () => {
   const isGamme = async () => {
     const uslg = await GetAllGamme();
     setGamme(uslg);
+  };
+  const isBrand = async () => {
+    const uslg = await GetAllBrand();
+    setBrand(uslg);
   };
   console.log(category);
   const [uploadComplete, setUploadComplete] = useState(false); // Track upload completion
@@ -76,6 +87,7 @@ const CreateOffers = () => {
     isCatgory();
     isFamily();
     isGamme();
+    isBrand();
   }, []);
 
   const uploadFileHandler1 = async () => {
@@ -219,21 +231,7 @@ const CreateOffers = () => {
                   }
                 />
               </div>
-              {/* <NumberInput
-                className="rounded-pill"
-                onChange={(valueString) =>
-                  setCreate({ ...create, budget: parse(valueString) })
-                }
-                value={format(create.budget)}
-                min={0}
-                backgroundColor="white"
-              >
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput> */}
+
               <br />
               <div>
                 <Form.Label>Family</Form.Label>
@@ -253,36 +251,8 @@ const CreateOffers = () => {
                 </select>
               </div>
 
-              {/* <Form.Label>Family</Form.Label>
-              <Form.Control
-                className="form-control"
-                type="text"
-                placeholder="What Family is it?"
-                value={create?.duree}
-                onChange={(e) =>
-                  setCreate({ ...create, duree: e.target.value })
-                }
-              /> */}
               <br />
-              {/* <div>
-                <Form.Label>Categories</Form.Label>
-                <select
-                  className="form-control"
-                  onChange={(e) =>
-                    setCreate({ ...create, colors: e.target.value })
-                  }
-                  name="colors"
-                >
-                  <option>--SELECT--</option>
-                  <option value="Dairy">Dairy</option>
-                  <option value="Beverages">Beverages</option>
-                  <option value="Biscuits & Snacks">Biscuits & Snacks</option>
-                  <option value="Breads & Bakery">Breads & Bakery</option>
-                  <option value="Breakfast & Dairy">Breakfast & Dairy</option>
-                  <option value="Frozen Food">Frozen Food</option>
-                  <option value="Grocery & Staples">Grocery & Staples</option>
-                </select>
-              </div> */}
+
               <div>
                 <Form.Label>Categories</Form.Label>
                 <select
@@ -302,16 +272,7 @@ const CreateOffers = () => {
               </div>
 
               <br />
-              {/* <Form.Label>Product maker</Form.Label>
-              <Form.Control
-                className="form-control"
-                type="text"
-                placeholder="Product maker ?"
-                value={create?.prdmake}
-                onChange={(e) =>
-                  setCreate({ ...create, prdmake: e.target.value })
-                }
-              /> */}
+
               <br />
               <div>
                 <Form.Label>Gamme</Form.Label>
@@ -330,19 +291,24 @@ const CreateOffers = () => {
                   ))}
                 </select>
               </div>
+              <div>
+                <Form.Label>Brand</Form.Label>
+                <select
+                  className="form-control"
+                  onChange={(e) =>
+                    setCreate({ ...create, brand: e.target.value })
+                  }
+                  name="brand"
+                >
+                  <option>--SELECT--</option>
+                  {brands.map((cat, index) => (
+                    <option key={cat._id} value={cat.brand}>
+                      {cat.brand}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-
-{/* 
-              <Form.Label>Gamme</Form.Label>
-              <Form.Control
-                className="form-control"
-                type="text"
-                placeholder="Gamme ?"
-                value={create?.gamme}
-                onChange={(e) =>
-                  setCreate({ ...create, gamme: e.target.value })
-                }
-              /> */}
               <br />
 
               <Form.Label>Product Area</Form.Label>
@@ -355,24 +321,7 @@ const CreateOffers = () => {
                   setCreate({ ...create, adress: e.target.value })
                 }
               />
-              <br />
-              <div>
-                <Form.Label>Product Maker</Form.Label>
-                <select
-                  className="form-control"
-                  onChange={(e) =>
-                    setCreate({ ...create, brand: e.target.value })
-                  }
-                  name="brand"
-                >
-                  <option>--SELECT--</option>
-                  <option value="Geant">GEANT</option>
-                  <option value="Monoprix">MONOPRIX</option>
-                  <option value="Carrefour">CARREFOUR</option>
-                  <option value="Mg">MG</option>
-                  <option value="Aziza">AZIZA</option>
-                </select>
-              </div>
+
               <br />
               <Form.Label>Describe your product</Form.Label>
               <Form.Control
@@ -412,9 +361,15 @@ const CreateOffers = () => {
                 <i className="fa fa-check px-1" aria-hidden="true"></i>Send
               </Button>
             </Link>
-            {isAdmin &&
-            <a type="submit" className="btn btn-primary me-4 rounded-pill px-4 py-2 h-25" href="/createCategory">Add Params</a>
-            }
+            {isAdmin && (
+              <a
+                type="submit"
+                className="btn btn-primary me-4 rounded-pill px-4 py-2 h-25"
+                href="/createCategory"
+              >
+                Add Params
+              </a>
+            )}
           </div>
         </div>
       </section>

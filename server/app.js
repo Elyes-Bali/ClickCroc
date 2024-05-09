@@ -29,6 +29,7 @@ app.use("/api/blog/upload",require("./routes/PhotoImgsUpload"));
 app.use("/api/categ", require('./routes/Categorie'));
 app.use("/api/gamme", require('./routes/Gamme'));
 app.use("/api/family", require('./routes/Famille'));
+app.use("/api/brand", require('./routes/Brand'));
 
 
 

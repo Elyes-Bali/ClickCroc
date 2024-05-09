@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home/Home";
@@ -20,14 +19,11 @@ import Errorpage from "./components/error/Errorpage";
 import CreateOffers from "./components/seller/offers/CreateOffers"
 import Chartes from "./components/dashboard/Chartes";
 
-import SideBar from "./components/dashboard/SideBar";
 import Profile from "./components/profile/Profile";
 import Logup from "./components/seller/logup/Logup";
 import Market from "./components/market/Market";
-import ItemCard from "./components/itemCard/ItemCard";
 import OfferDetail from "./components/offerDetail/OfferDetail";
 import ClientProfile from "./components/client/ClientProfile";
-import Footer from "./components/screens/Footer/Footer";
 import Wishlist from "./components/whishlist/Wishlist";
 import Checkemail from "./components/fgpassword/Checkemail"
 import PasswordRes from "./components/fgpassword/PasswordRes"
@@ -37,7 +33,6 @@ import ChartDb from "./components/charts/ChartDb";
 import Chartusers from "./components/charts/Chartusers";
 
 import Contact from "./components/contact/Contact";
-import SpecialCase from "./components/SpecialCase/SpecialCase";
 import ClienDB from "./components/dashboard/ClienDB";
 import ManuProfile from "./components/manuDashboard/manuProfile/ManuProfile";
 import ManuChart from "./components/manuDashboard/manuChart/ManuChart";
@@ -64,10 +59,7 @@ function App() {
     <div>
       
       <Navbar ping={ping}/>
-     
-      {/* <Header/> */}
-    {/* {token && isAdmin &&
-      <SideBar />} */}
+    
 
      
       <Routes>
@@ -124,9 +116,7 @@ function App() {
         
 
       </Routes>
-      {/* <div className="foot">
-      <Footer/>
-      </div> */}
+      
    
     </div>
   );

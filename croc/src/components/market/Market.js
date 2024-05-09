@@ -11,7 +11,7 @@ import { Input, Button } from "@chakra-ui/react";
 import { GetAllOff } from "../../apis/OfferApi";
 import Footer from "../screens/Footer/Footer";
 import Brand from "../screens/brand/Brand";
-import { GetAllCateg, GetAllFamily, GetAllGamme } from "../../apis/Category";
+import { GetAllBrand, GetAllCateg, GetAllFamily, GetAllGamme } from "../../apis/Category";
 
 const Market = () => {
   const token = localStorage.getItem("token");
@@ -26,6 +26,7 @@ const Market = () => {
   const [category, setCategory] = useState([]);
   const [family, setFamily] = useState([]);
   const [gamme, setGamme] = useState([]);
+  const [brand, setBrand] = useState([]);
   const isDevs = async () => {
     const AllDev = await GetAllOff();
 
@@ -58,17 +59,17 @@ const Market = () => {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleBrandFilter = (e) => {
-    const selectedBrand = e.target.value;
-    if (selectedBrand === "") {
-      setFilteredResults([]);
-    } else {
-      const filteredByBrand = listdev.filter(
-        (item) => item.brand === selectedBrand
-      );
-      setFilteredResults(filteredByBrand);
-    }
-  };
+  // const handleBrandFilter = (e) => {
+  //   const selectedBrand = e.target.value;
+  //   if (selectedBrand === "") {
+  //     setFilteredResults([]);
+  //   } else {
+  //     const filteredByBrand = listdev.filter(
+  //       (item) => item.brand === selectedBrand
+  //     );
+  //     setFilteredResults(filteredByBrand);
+  //   }
+  // };
 
   const handleCategFilter = (e) => {
     const selectedcateg = e.target.value;
@@ -76,7 +77,7 @@ const Market = () => {
       setFilteredResults([]);
     } else {
       const filteredByBrand = listdev.filter(
-        (item) => item.colors === selectedcateg
+        (item) => item.colors.toLowerCase() === selectedcateg.toLowerCase()
       );
       setFilteredResults(filteredByBrand);
     }
@@ -88,7 +89,7 @@ const Market = () => {
       setFilteredResults([]);
     } else {
       const filteredByBrand = listdev.filter(
-        (item) => item.gamme === selectedcateg
+        (item) => item.gamme.toLowerCase() === selectedcateg.toLowerCase()
       );
       setFilteredResults(filteredByBrand);
     }
@@ -100,7 +101,20 @@ const Market = () => {
       setFilteredResults([]);
     } else {
       const filteredByBrand = listdev.filter(
-        (item) => item.duree === selectedcateg
+        (item) => item.duree.toLowerCase() === selectedcateg.toLowerCase()
+      );
+      setFilteredResults(filteredByBrand);
+    }
+  };
+
+
+  const handleBrFilter = (e) => {
+    const selectedcateg = e.target.value;
+    if (selectedcateg === "") {
+      setFilteredResults([]);
+    } else {
+      const filteredByBrand = listdev.filter(
+        (item) => item.brand.toLowerCase() === selectedcateg.toLowerCase()
       );
       setFilteredResults(filteredByBrand);
     }
@@ -203,6 +217,13 @@ const Market = () => {
     setGamme(GammeNames);
   };
 
+  const isBrand = async () => {
+    const uslg = await GetAllBrand();
+    const BrandNames = uslg.map((bran) => bran.brand);
+
+    setBrand(BrandNames);
+  };
+
   console.log(category);
 
   useEffect(() => {
@@ -210,6 +231,7 @@ const Market = () => {
     isCategory();
     isFamily();
     isGamme();
+    isBrand();
     token && isUser();
   }, []);
   return (
@@ -284,7 +306,7 @@ const Market = () => {
           <div className="row">
             <div className="container bbg-white shadow col-md-3">
               <div className=" ctr">
-                <p className="free mb-3">
+                {/* <p className="free mb-3">
                   <b>Shop by Brand</b>{" "}
                   <i className="fa fa-arrow-down" aria-hidden="true"></i>
                 </p>
@@ -297,7 +319,26 @@ const Market = () => {
                   <option value="Mg">MG</option>
                   <option value="Aziza">Aziza</option>
                 </select>
+                <br /> */}
+
+                <p className="free mb-3">
+                  <b>Shop by Brand</b>{" "}
+                  <i className="fa fa-arrow-down" aria-hidden="true"></i>
+                </p>
+                <label htmlFor="category">Brands: &nbsp;</label>
+                <select id="category" onChange={handleBrFilter}>
+                <option value="">All</option>
+
+                  {brand.map((br, index) => (
+                    <option key={index} value={br}>
+                      {br}
+                    </option>
+                  ))}
+                  {/* Add more options as needed */}
+                </select>
                 <br />
+
+
 
                 <p className="free mb-3">
                   <b>Shop by Categories</b>{" "}

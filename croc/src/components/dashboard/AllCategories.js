@@ -4,9 +4,11 @@ import "./Dash.css";
 import { Button, Table } from "react-bootstrap";
 import SideBar from "./SideBar";
 import {
+  GetAllBrand,
   GetAllCateg,
   GetAllFamily,
   GetAllGamme,
+  RemoveBrand,
   RemoveCateg,
   RemoveFamily,
   RemoveGamme,
@@ -17,9 +19,11 @@ const AllCategories = () => {
   const [category, setCategory] = useState([]);
   const [family, setFamily] = useState([]);
   const [gamme, setGamme] = useState([]);
+  const [brand, setBrand] = useState([]);
   const [editedCategory, setEditedCategory] = useState({});
   const [editedFamily, setEditedFamily] = useState({});
   const [editedGamme, setEditedGamme] = useState({});
+  const [editedBrand, setEditedBrand] = useState({});
 
   const isCategory = async () => {
     const uslg = await GetAllCateg();
@@ -34,6 +38,11 @@ const AllCategories = () => {
   const isGamme = async () => {
     const uslg = await GetAllGamme();
     setGamme(uslg);
+  };
+
+  const isBrand = async () => {
+    const uslg = await GetAllBrand();
+    setBrand(uslg);
   };
 
   const handleCategoryEdit = async (id) => {
@@ -66,10 +75,21 @@ const AllCategories = () => {
     }
   };
 
+  const handleBrandEdit = async (id) => {
+    const config = { headers: { "Content-Type": "application/json" } };
+    try {
+      await axios.put(`/api/brand/edite/${id}`, editedBrand, config);
+      // Handle the response or update the state as needed
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     isCategory();
     isFamily();
     isGamme();
+    isBrand();
   }, []);
 
   return (
@@ -272,6 +292,73 @@ const AllCategories = () => {
                 </tbody>
               </Table>
             </div>
+
+            <div className="card-body">
+              <Table bordered hover>
+                <thead>
+                  <tr>
+                    <th>Brands</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {brand.map((el) => (
+                    <tr key={el._id}>
+                      <td>
+                        {editedBrand._id === el._id ? (
+                          <input
+                            type="text"
+                            value={editedBrand.brand}
+                            onChange={(e) =>
+                              setEditedBrand({
+                                ...editedBrand,
+                                brand: e.target.value
+                              })
+                            }
+                          />
+                        ) : (
+                          el.brand
+                        )}
+                      </td>
+                      <td>
+                        {editedBrand._id === el._id ? (
+                          <Button
+                            variant="success"
+                            onClick={() => {
+                              handleBrandEdit(el._id);
+                              setEditedBrand({});
+                              window.location.reload();
+
+                            }}
+                          >
+                            Save
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="warning"
+                            onClick={() => setEditedBrand(el)}
+                          >
+                            Edit
+                          </Button>
+                        )}
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            RemoveBrand(el._id);
+                            isBrand();
+                          }}
+                        >
+                          DELETE
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+
+
+
           </div>
         </div>
       </div>

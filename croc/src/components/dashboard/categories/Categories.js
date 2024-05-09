@@ -14,6 +14,9 @@ const Categories = () => {
   const [gammes, setGamme] = useState({
     gamme: "",
   });
+  const [brands, setBrand] = useState({
+    brand: "",
+  });
 
   const handleCateg = async () => {
     try {
@@ -50,6 +53,20 @@ const Categories = () => {
       alert("success");
       setGamme({
         gamme: "",
+      });
+      //   navigate("/market");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  const handleBrand = async () => {
+    try {
+      const config = { headers: { "Content-Type": "application/json" } };
+      const res = await axios.post("/api/brand/create", brands, config);
+      alert("success");
+      setBrand({
+        brand: "",
       });
       //   navigate("/market");
     } catch (error) {
@@ -133,6 +150,30 @@ const Categories = () => {
           <Button
           className="btn btn-danger me-4 rounded-pill px-4 py-2 categbtn"
           onClick={handleGamme}
+          // href="/market"
+        >
+          <i className="fa fa-check px-1 " aria-hidden="true"></i>ADD
+        </Button>
+        </Form.Group>
+
+        <Form.Group
+          as={Col}
+          controlId="brand"
+          className="col-6 col-sm-2 col-md-7 row"
+        >
+          <b className="d-flex justify-content-center">Add Brand</b>
+          <br />
+          <Form.Label>Brand Name</Form.Label>
+          <Form.Control
+            className="form-control mb-2"
+            type="text"
+            placeholder="New Brand"
+            value={brands?.brand}
+            onChange={(e) => setBrand({ ...brands, brand: e.target.value })}
+          />
+          <Button
+          className="btn btn-danger me-4 rounded-pill px-4 py-2 categbtn"
+          onClick={handleBrand}
           // href="/market"
         >
           <i className="fa fa-check px-1 " aria-hidden="true"></i>ADD
