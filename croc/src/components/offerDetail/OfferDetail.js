@@ -15,6 +15,7 @@ import { GetAllWishes } from "../../apis/WishApi";
 const OfferDetail = ({ ping, setPing }) => {
   const location = useLocation();
   const { dev } = location.state;
+  const isClient = localStorage.getItem("isClient");
 
   const [offer, setOffer] = useState([]);
   const [wishes, setWishes] = useState([]);
@@ -274,6 +275,8 @@ const OfferDetail = ({ ping, setPing }) => {
               <hr />
               <p className="lead mb-4">{dev.detail}</p>
               <br />
+              {isClient &&
+              <>
               <h2>Would you like to Rate the Product :</h2>
               <div>
                 <div>
@@ -340,6 +343,8 @@ const OfferDetail = ({ ping, setPing }) => {
               >
                 Submit
               </button>
+              </>
+              }
             </div>
           </div>
         </div>
